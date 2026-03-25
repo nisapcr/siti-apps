@@ -1,0 +1,13 @@
+export default function Container({children}){ //nested component
+    return(
+        <div>
+            <h1>Biodata</h1>
+            {children}
+        <hr/>
+        <footer>
+            <p>2025 - Politeknik Caltex Riau</p>
+        </footer> 
+        </div>
+
+    )
+}
