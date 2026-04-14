@@ -1,0 +1,240 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development Bootcamp",
+    "category": "Programming",
+    "level": "Beginner",
+    "price": 150000,
+    "thumbnail": "https://picsum.photos/200?1",
+    "instructor": { "name": "Andi", "rating": 4.8, "students": 1200 },
+    "schedule": { "duration": "3 Months", "startDate": "2026-05-01", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 5 }
+  },
+  {
+    "id": 2,
+    "title": "UI/UX Design",
+    "category": "Design",
+    "level": "Intermediate",
+    "price": 200000,
+    "thumbnail": "https://picsum.photos/200?2",
+    "instructor": { "name": "Siti", "rating": 4.7, "students": 900 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-06-01", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 3 }
+  },
+
+  {
+    "id": 3,
+    "title": "Data Science",
+    "category": "Data",
+    "level": "Beginner",
+    "price": 180000,
+    "thumbnail": "https://picsum.photos/200?3",
+    "instructor": { "name": "Budi", "rating": 4.6, "students": 800 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-07-01", "mode": "Online" },
+    "details": { "language": "English", "certificate": true, "projects": 4 }
+  },
+
+  {
+    "id": 4,
+    "title": "Digital Marketing",
+    "category": "Business",
+    "level": "Beginner",
+    "price": 120000,
+    "thumbnail": "https://picsum.photos/200?4",
+    "instructor": { "name": "Rina", "rating": 4.5, "students": 600 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-05-10", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 2 }
+  },
+
+  {
+    "id": 5,
+    "title": "React JS",
+    "category": "Programming",
+    "level": "Intermediate",
+    "price": 220000,
+    "thumbnail": "https://picsum.photos/200?5",
+    "instructor": { "name": "Dedi", "rating": 4.9, "students": 1500 },
+    "schedule": { "duration": "3 Months", "startDate": "2026-06-15", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 6 }
+  },
+
+  {
+    "id": 6,
+    "title": "Figma Design",
+    "category": "Design",
+    "level": "Beginner",
+    "price": 130000,
+    "thumbnail": "https://picsum.photos/200?6",
+    "instructor": { "name": "Lina", "rating": 4.6, "students": 700 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-07-10", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 2 }
+  },
+
+  {
+    "id": 7,
+    "title": "Machine Learning",
+    "category": "Data",
+    "level": "Advanced",
+    "price": 300000,
+    "thumbnail": "https://picsum.photos/200?7",
+    "instructor": { "name": "Agus", "rating": 4.9, "students": 1100 },
+    "schedule": { "duration": "4 Months", "startDate": "2026-08-01", "mode": "Online" },
+    "details": { "language": "English", "certificate": true, "projects": 8 }
+  },
+
+  {
+    "id": 8,
+    "title": "Public Speaking",
+    "category": "Business",
+    "level": "Intermediate",
+    "price": 100000,
+    "thumbnail": "https://picsum.photos/200?8",
+    "instructor": { "name": "Tina", "rating": 4.4, "students": 500 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-05-20", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 1 }
+  },
+
+  {
+    "id": 9,
+    "title": "Node JS",
+    "category": "Programming",
+    "level": "Advanced",
+    "price": 250000,
+    "thumbnail": "https://picsum.photos/200?9",
+    "instructor": { "name": "Fajar", "rating": 4.7, "students": 1000 },
+    "schedule": { "duration": "3 Months", "startDate": "2026-06-20", "mode": "Online" },
+    "details": { "language": "English", "certificate": true, "projects": 5 }
+  },
+
+  {
+    "id": 10,
+    "title": "Graphic Design",
+    "category": "Design",
+    "level": "Intermediate",
+    "price": 160000,
+    "thumbnail": "https://picsum.photos/200?10",
+    "instructor": { "name": "Nina", "rating": 4.5, "students": 650 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-07-05", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 3 }
+  },
+
+  {
+    "id": 11,
+    "title": "Python Basic",
+    "category": "Programming",
+    "level": "Beginner",
+    "price": 140000,
+    "thumbnail": "https://picsum.photos/200?11",
+    "instructor": { "name": "Rudi", "rating": 4.6, "students": 900 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-05-25", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 4 }
+  },
+
+  {
+    "id": 12,
+    "title": "SEO Marketing",
+    "category": "Business",
+    "level": "Intermediate",
+    "price": 110000,
+    "thumbnail": "https://picsum.photos/200?12",
+    "instructor": { "name": "Ayu", "rating": 4.3, "students": 400 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-06-05", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 2 }
+  },
+
+  {
+    "id": 13,
+    "title": "Deep Learning",
+    "category": "Data",
+    "level": "Advanced",
+    "price": 320000,
+    "thumbnail": "https://picsum.photos/200?13",
+    "instructor": { "name": "Bayu", "rating": 4.9, "students": 1000 },
+    "schedule": { "duration": "4 Months", "startDate": "2026-08-10", "mode": "Online" },
+    "details": { "language": "English", "certificate": true, "projects": 7 }
+  },
+
+  {
+    "id": 14,
+    "title": "Canva Design",
+    "category": "Design",
+    "level": "Beginner",
+    "price": 90000,
+    "thumbnail": "https://picsum.photos/200?14",
+    "instructor": { "name": "Dina", "rating": 4.5, "students": 850 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-05-15", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 2 }
+  },
+
+  {
+    "id": 15,
+    "title": "Startup Business",
+    "category": "Business",
+    "level": "Advanced",
+    "price": 270000,
+    "thumbnail": "https://picsum.photos/200?15",
+    "instructor": { "name": "Rizky", "rating": 4.8, "students": 700 },
+    "schedule": { "duration": "3 Months", "startDate": "2026-07-20", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 5 }
+  },
+
+  {
+    "id": 16,
+    "title": "Laravel Framework",
+    "category": "Programming",
+    "level": "Intermediate",
+    "price": 210000,
+    "thumbnail": "https://picsum.photos/200?16",
+    "instructor": { "name": "Hadi", "rating": 4.7, "students": 950 },
+    "schedule": { "duration": "3 Months", "startDate": "2026-06-25", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 6 }
+  },
+
+  {
+    "id": 17,
+    "title": "Excel Data Analysis",
+    "category": "Data",
+    "level": "Beginner",
+    "price": 100000,
+    "thumbnail": "https://picsum.photos/200?17",
+    "instructor": { "name": "Putri", "rating": 4.4, "students": 600 },
+    "schedule": { "duration": "1 Month", "startDate": "2026-05-30", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 3 }
+  },
+
+  {
+    "id": 18,
+    "title": "Branding Strategy",
+    "category": "Business",
+    "level": "Intermediate",
+    "price": 150000,
+    "thumbnail": "https://picsum.photos/200?18",
+    "instructor": { "name": "Novi", "rating": 4.6, "students": 500 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-06-12", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 3 }
+  },
+
+  {
+    "id": 19,
+    "title": "Adobe Illustrator",
+    "category": "Design",
+    "level": "Advanced",
+    "price": 230000,
+    "thumbnail": "https://picsum.photos/200?19",
+    "instructor": { "name": "Yoga", "rating": 4.7, "students": 750 },
+    "schedule": { "duration": "2 Months", "startDate": "2026-07-18", "mode": "Online" },
+    "details": { "language": "Indonesia", "certificate": true, "projects": 4 }
+  },
+
+  {
+    "id": 20,
+    "title": "Cyber Security",
+    "category": "Programming",
+    "level": "Advanced",
+    "price": 300000,
+    "thumbnail": "https://picsum.photos/200?20",
+    "instructor": { "name": "Raka", "rating": 4.9, "students": 1200 },
+    "schedule": { "duration": "4 Months", "startDate": "2026-08-20", "mode": "Online" },
+    "details": { "language": "English", "certificate": true, "projects": 8 }
+  }
+]
