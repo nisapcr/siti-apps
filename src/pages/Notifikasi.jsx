@@ -1,7 +1,14 @@
 import { FiBell, FiSend, FiClock } from "react-icons/fi";
-import { notifikasiData, formatTanggal } from "../data/dummyData";
+import notifikasiData from "../data/notifikasi.json";
 
 export default function Notifikasi() {
+  const formatTanggal = (tanggal) => {
+  return new Date(tanggal).toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
   const stats = [
     { label: "Total Notifikasi", value: notifikasiData.length,                                          color: "#8B5CF6", top: "#8B5CF6", iconBg: "rgba(139,92,246,0.1)" },
     { label: "Terjadwal",        value: notifikasiData.filter((n) => n.status === "Scheduled").length,  color: "#F5A623", top: "#F5A623", iconBg: "rgba(245,166,35,0.1)" },

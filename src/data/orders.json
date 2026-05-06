@@ -1,0 +1,242 @@
+[
+  {
+    "orderId": "ORD001",
+    "customerId": "CUST001",
+    "customerName": "Andi Wijaya",
+    "status": "Completed",
+    "totalPrice": 350000,
+    "orderDate": "2024-12-15"
+  },
+  {
+    "orderId": "ORD002",
+    "customerId": "CUST002",
+    "customerName": "Siti Nurhaliza",
+    "status": "Completed",
+    "totalPrice": 150000,
+    "orderDate": "2024-12-20"
+  },
+  {
+    "orderId": "ORD003",
+    "customerId": "CUST003",
+    "customerName": "Budi Santoso",
+    "status": "Completed",
+    "totalPrice": 350000,
+    "orderDate": "2024-12-10"
+  },
+  {
+    "orderId": "ORD004",
+    "customerId": "CUST004",
+    "customerName": "Dewi Anggraeni",
+    "status": "Pending",
+    "totalPrice": 5000000,
+    "orderDate": "2024-12-18"
+  },
+  {
+    "orderId": "ORD005",
+    "customerId": "CUST005",
+    "customerName": "Rizki Pratama",
+    "status": "Completed",
+    "totalPrice": 400000,
+    "orderDate": "2024-12-05"
+  },
+  {
+    "orderId": "ORD006",
+    "customerId": "CUST006",
+    "customerName": "Fajar Ramadhan",
+    "status": "Completed",
+    "totalPrice": 350000,
+    "orderDate": "2024-12-01"
+  },
+  {
+    "orderId": "ORD007",
+    "customerId": "CUST007",
+    "customerName": "Nadia Putri",
+    "status": "Completed",
+    "totalPrice": 150000,
+    "orderDate": "2024-12-12"
+  },
+  {
+    "orderId": "ORD008",
+    "customerId": "CUST008",
+    "customerName": "Hendra Gunawan",
+    "status": "Completed",
+    "totalPrice": 400000,
+    "orderDate": "2024-11-28"
+  },
+  {
+    "orderId": "ORD009",
+    "customerId": "CUST009",
+    "customerName": "Rina Amelia",
+    "status": "Completed",
+    "totalPrice": 150000,
+    "orderDate": "2024-12-08"
+  },
+  {
+    "orderId": "ORD010",
+    "customerId": "CUST010",
+    "customerName": "Agus Supriyanto",
+    "status": "Pending",
+    "totalPrice": 5000000,
+    "orderDate": "2024-11-15"
+  },
+  {
+    "orderId": "ORD011",
+    "customerId": "CUST011",
+    "customerName": "Maya Sari",
+    "status": "Completed",
+    "totalPrice": 350000,
+    "orderDate": "2024-12-03"
+  },
+  {
+    "orderId": "ORD012",
+    "customerId": "CUST012",
+    "customerName": "Rudi Hartono",
+    "status": "Completed",
+    "totalPrice": 700000,
+    "orderDate": "2024-11-20"
+  },
+  {
+    "orderId": "ORD013",
+    "customerId": "CUST013",
+    "customerName": "Lina Marlina",
+    "status": "Pending",
+    "totalPrice": 250000,
+    "orderDate": "2024-12-14"
+  },
+  {
+    "orderId": "ORD014",
+    "customerId": "CUST014",
+    "customerName": "Eko Prasetyo",
+    "status": "Completed",
+    "totalPrice": 300000,
+    "orderDate": "2024-12-02"
+  },
+  {
+    "orderId": "ORD015",
+    "customerId": "CUST015",
+    "customerName": "Tina Fitriani",
+    "status": "Cancelled",
+    "totalPrice": 200000,
+    "orderDate": "2024-12-09"
+  },
+  {
+    "orderId": "ORD016",
+    "customerId": "CUST016",
+    "customerName": "Bambang Susanto",
+    "status": "Completed",
+    "totalPrice": 450000,
+    "orderDate": "2024-11-25"
+  },
+  {
+    "orderId": "ORD017",
+    "customerId": "CUST017",
+    "customerName": "Citra Dewi",
+    "status": "Completed",
+    "totalPrice": 550000,
+    "orderDate": "2024-12-17"
+  },
+  {
+    "orderId": "ORD018",
+    "customerId": "CUST018",
+    "customerName": "Doni Saputra",
+    "status": "Pending",
+    "totalPrice": 320000,
+    "orderDate": "2024-12-22"
+  },
+  {
+    "orderId": "ORD019",
+    "customerId": "CUST019",
+    "customerName": "Eka Widya",
+    "status": "Completed",
+    "totalPrice": 280000,
+    "orderDate": "2024-12-11"
+  },
+  {
+    "orderId": "ORD020",
+    "customerId": "CUST020",
+    "customerName": "Farid Kurniawan",
+    "status": "Cancelled",
+    "totalPrice": 390000,
+    "orderDate": "2024-11-30"
+  },
+  {
+    "orderId": "ORD021",
+    "customerId": "CUST021",
+    "customerName": "Gita Sari",
+    "status": "Completed",
+    "totalPrice": 210000,
+    "orderDate": "2024-12-13"
+  },
+  {
+    "orderId": "ORD022",
+    "customerId": "CUST022",
+    "customerName": "Hadi Prasetyo",
+    "status": "Pending",
+    "totalPrice": 480000,
+    "orderDate": "2024-12-25"
+  },
+  {
+    "orderId": "ORD023",
+    "customerId": "CUST023",
+    "customerName": "Indah Lestari",
+    "status": "Completed",
+    "totalPrice": 620000,
+    "orderDate": "2024-11-22"
+  },
+  {
+    "orderId": "ORD024",
+    "customerId": "CUST024",
+    "customerName": "Joko Susilo",
+    "status": "Completed",
+    "totalPrice": 340000,
+    "orderDate": "2024-12-19"
+  },
+  {
+    "orderId": "ORD025",
+    "customerId": "CUST025",
+    "customerName": "Kartika Dewi",
+    "status": "Completed",
+    "totalPrice": 270000,
+    "orderDate": "2024-12-06"
+  },
+  {
+    "orderId": "ORD026",
+    "customerId": "CUST026",
+    "customerName": "Lukman Hakim",
+    "status": "Pending",
+    "totalPrice": 510000,
+    "orderDate": "2024-12-27"
+  },
+  {
+    "orderId": "ORD027",
+    "customerId": "CUST027",
+    "customerName": "Mega Utami",
+    "status": "Completed",
+    "totalPrice": 430000,
+    "orderDate": "2024-12-04"
+  },
+  {
+    "orderId": "ORD028",
+    "customerId": "CUST028",
+    "customerName": "Nanda Pratama",
+    "status": "Completed",
+    "totalPrice": 380000,
+    "orderDate": "2024-12-16"
+  },
+  {
+    "orderId": "ORD029",
+    "customerId": "CUST029",
+    "customerName": "Oscar Fernando",
+    "status": "Cancelled",
+    "totalPrice": 250000,
+    "orderDate": "2024-11-18"
+  },
+  {
+    "orderId": "ORD030",
+    "customerId": "CUST030",
+    "customerName": "Putri Amelia",
+    "status": "Completed",
+    "totalPrice": 490000,
+    "orderDate": "2024-12-21"
+  }
+]

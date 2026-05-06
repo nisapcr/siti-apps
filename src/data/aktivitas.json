@@ -1,0 +1,6 @@
+[
+  { "id": 1, "tipe": "Jadwal", "deskripsi": "Andi Wijaya booking jadwal scaling", "waktu": "2 jam yang lalu" },
+  { "id": 2, "tipe": "Pasien Baru", "deskripsi": "Data pasien baru ditambahkan - Dewi Anggraeni", "waktu": "5 jam yang lalu" },
+  { "id": 3, "tipe": "Selesai", "deskripsi": "Pembayaran scaling dari Budi Santoso - Rp350,000", "waktu": "1 hari yang lalu" },
+  { "id": 4, "tipe": "Reminder", "deskripsi": "Notifikasi WhatsApp terkirim ke Siti Nurhaliza", "waktu": "1 hari yang lalu" }
+]

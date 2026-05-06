@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { FiSearch, FiDownload, FiFileText, FiX } from "react-icons/fi";
-import { riwayatPerawatanData, formatTanggal } from "../data/dummyData";
+import riwayatPerawatanData from "../data/riwayatPerawatan.json";
 
+function formatTanggal(tgl) {
+  return new Date(tgl).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 function exportToCSV(data) {
   const headers = ["Pasien", "Tindakan", "Tanggal", "Dokter", "Biaya", "Status"];
   const rows = data.map((r) => [
@@ -175,11 +182,13 @@ export default function Riwayat() {
   const [search, setSearch] = useState("");
   const [showExport, setShowExport] = useState(false);
 
-  const filtered = riwayatPerawatanData.filter(
+ const filtered = riwayatPerawatanData
+  .filter(
     (r) =>
       r.pasienNama.toLowerCase().includes(search.toLowerCase()) ||
       r.tindakan.toLowerCase().includes(search.toLowerCase())
-  );
+  )
+  .sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
@@ -259,7 +268,7 @@ export default function Riwayat() {
                   <td style={{ padding: "13px 16px", color: "#a0b0c0", fontSize: 13 }}>{riwayat.tindakan}</td>
                   <td style={{ padding: "13px 16px", color: "#a0b0c0", fontSize: 13 }}>{formatTanggal(riwayat.tanggal)}</td>
                   <td style={{ padding: "13px 16px", color: "#a0b0c0", fontSize: 13 }}>{riwayat.dokter}</td>
-                  <td style={{ padding: "13px 16px", color: "#a0b0c0", fontSize: 13 }}>Rp{riwayat.biaya.toLocaleString()}</td>
+                  <td style={{ padding: "13px 16px", color: "#a0b0c0", fontSize: 13 }}>Rp{Number(riwayat.biaya).toLocaleString("id-ID")}</td>
                   <td style={{ padding: "13px 16px" }}>
                     <span style={{ display: "inline-block", padding: "3px 10px", borderRadius: 20, fontSize: 11, background: "rgba(31,212,160,0.1)", color: "#1FD4A0" }}>
                       {riwayat.status}

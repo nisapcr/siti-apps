@@ -1,0 +1,197 @@
+{
+  "keluhanData": [
+    {
+      "id": 1,
+      "pasienNama": "Budi Santoso",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Masih terasa ngilu setelah scaling gigi",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-01",
+      "responAdmin": null
+    },
+    {
+      "id": 2,
+      "pasienNama": "Andi Pratama",
+      "tipe": "Keluhan",
+      "prioritas": "Medium",
+      "status": "Baru",
+      "pesan": "Tambalan terasa tidak nyaman saat mengunyah",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-01",
+      "responAdmin": null
+    },
+    {
+      "id": 3,
+      "pasienNama": "Dewi Lestari",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Gusi masih berdarah setelah cabut gigi",
+      "kategori": "Darurat",
+      "tanggal": "2026-05-02",
+      "responAdmin": "Kontrol ulang disarankan"
+    },
+    {
+      "id": 4,
+      "pasienNama": "Rudi Hartono",
+      "tipe": "Feedback",
+      "prioritas": "Low",
+      "status": "Selesai",
+      "pesan": "Pelayanan sangat baik dan cepat",
+      "kategori": "Pelayanan",
+      "tanggal": "2026-05-02",
+      "responAdmin": "Terima kasih"
+    },
+    {
+      "id": 5,
+      "pasienNama": "Siti Aisyah",
+      "tipe": "Feedback",
+      "prioritas": "Low",
+      "status": "Selesai",
+      "pesan": "Dokter ramah dan informatif",
+      "kategori": "Umum",
+      "tanggal": "2026-05-02",
+      "responAdmin": "Terima kasih"
+    },
+    {
+      "id": 6,
+      "pasienNama": "Nina Kartika",
+      "tipe": "Keluhan",
+      "prioritas": "Medium",
+      "status": "Baru",
+      "pesan": "Antrian terlalu lama",
+      "kategori": "Pelayanan",
+      "tanggal": "2026-05-03",
+      "responAdmin": null
+    },
+    {
+      "id": 7,
+      "pasienNama": "Fajar Ramadhan",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Nyeri tidak hilang setelah cabut gigi",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-03",
+      "responAdmin": null
+    },
+    {
+      "id": 8,
+      "pasienNama": "Lia Amelia",
+      "tipe": "Feedback",
+      "prioritas": "Low",
+      "status": "Selesai",
+      "pesan": "Klinik bersih dan nyaman",
+      "kategori": "Fasilitas",
+      "tanggal": "2026-05-03",
+      "responAdmin": "Terima kasih"
+    },
+    {
+      "id": 9,
+      "pasienNama": "Dika Saputra",
+      "tipe": "Keluhan",
+      "prioritas": "Medium",
+      "status": "Baru",
+      "pesan": "Tambalan cepat lepas",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-03",
+      "responAdmin": null
+    },
+    {
+      "id": 10,
+      "pasienNama": "Maya Sari",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Sakit saat mengunyah setelah tindakan",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-03",
+      "responAdmin": "Sedang dianalisis"
+    },
+
+    {
+      "id": 11,
+      "pasienNama": "Agus Salim",
+      "tipe": "Feedback",
+      "prioritas": "Low",
+      "status": "Selesai",
+      "pesan": "Dokter sangat profesional",
+      "kategori": "Pelayanan",
+      "tanggal": "2026-05-04",
+      "responAdmin": "Terima kasih"
+    },
+    {
+      "id": 12,
+      "pasienNama": "Putri Lestari",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Bengkak setelah cabut gigi",
+      "kategori": "Darurat",
+      "tanggal": "2026-05-04",
+      "responAdmin": null
+    },
+    {
+      "id": 13,
+      "pasienNama": "Ilham Maulana",
+      "tipe": "Keluhan",
+      "prioritas": "Medium",
+      "status": "Baru",
+      "pesan": "Tambalan terasa tajam",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-04",
+      "responAdmin": null
+    },
+    {
+      "id": 14,
+      "pasienNama": "Salsa Aprilia",
+      "tipe": "Feedback",
+      "prioritas": "Low",
+      "status": "Selesai",
+      "pesan": "Pelayanan cepat dan rapi",
+      "kategori": "Umum",
+      "tanggal": "2026-05-04",
+      "responAdmin": "Terima kasih"
+    },
+    {
+      "id": 15,
+      "pasienNama": "Yoga Pratama",
+      "tipe": "Keluhan",
+      "prioritas": "High",
+      "status": "Diproses",
+      "pesan": "Nyeri setelah scaling belum hilang",
+      "kategori": "Perawatan",
+      "tanggal": "2026-05-04",
+      "responAdmin": null
+    }
+  ],
+
+  "surveyData": [
+    {
+      "id": 1,
+      "pasienNama": "Budi Santoso",
+      "rating": 4,
+      "komentar": "Pelayanan bagus",
+      "tanggalKirim": "2026-05-01",
+      "sudahRespon": true
+    },
+    {
+      "id": 2,
+      "pasienNama": "Siti Aisyah",
+      "rating": 5,
+      "komentar": "Sangat puas",
+      "tanggalKirim": "2026-05-02",
+      "sudahRespon": true
+    },
+    {
+      "id": 3,
+      "pasienNama": "Andi Pratama",
+      "rating": 3,
+      "komentar": "Cukup baik",
+      "tanggalKirim": "2026-05-03",
+      "sudahRespon": false
+    }
+  ]
+}

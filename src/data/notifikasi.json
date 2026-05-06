@@ -1,0 +1,37 @@
+[
+  { "id": 1, "pasienNama": "Budi Santoso", "pesan": "Reminder scaling gigi besok", "tipe": "Appointment", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-06", "sudahDikirim": true, "status": "Sent" },
+  { "id": 2, "pasienNama": "Siti Aisyah", "pesan": "Jadwal tambal gigi hari ini", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-06", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 3, "pasienNama": "Andi Pratama", "pesan": "Follow up cabut gigi", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-06", "sudahDikirim": true, "status": "Sent" },
+  { "id": 4, "pasienNama": "Dewi Lestari", "pesan": "Reminder cek gigi rutin", "tipe": "Reminder", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-06", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 5, "pasienNama": "Rudi Hartono", "pesan": "Kontrol behel bulan ini", "tipe": "Appointment", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": true, "status": "Sent" },
+
+  { "id": 6, "pasienNama": "Nina Kartika", "pesan": "Reminder scaling ulang", "tipe": "Follow Up", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 7, "pasienNama": "Fajar Ramadhan", "pesan": "Jadwal cabut gigi", "tipe": "Appointment", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": true, "status": "Sent" },
+  { "id": 8, "pasienNama": "Lia Amelia", "pesan": "Reminder kontrol gigi", "tipe": "Reminder", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 9, "pasienNama": "Dika Saputra", "pesan": "Follow up tambal gigi", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": true, "status": "Sent" },
+  { "id": 10, "pasienNama": "Maya Sari", "pesan": "Reminder scaling gigi", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-07", "sudahDikirim": false, "status": "Scheduled" },
+
+  { "id": 11, "pasienNama": "Agus Salim", "pesan": "Kontrol gigi rutin", "tipe": "Reminder", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-08", "sudahDikirim": true, "status": "Sent" },
+  { "id": 12, "pasienNama": "Putri Lestari", "pesan": "Reminder cabut gigi", "tipe": "Appointment", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-08", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 13, "pasienNama": "Ilham Maulana", "pesan": "Follow up scaling", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-08", "sudahDikirim": true, "status": "Sent" },
+  { "id": 14, "pasienNama": "Salsa Aprilia", "pesan": "Reminder tambal gigi", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-08", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 15, "pasienNama": "Yoga Pratama", "pesan": "Kontrol behel", "tipe": "Appointment", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-08", "sudahDikirim": true, "status": "Sent" },
+
+  { "id": 16, "pasienNama": "Rina Oktaviani", "pesan": "Reminder cek gigi", "tipe": "Reminder", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-09", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 17, "pasienNama": "Beni Saputra", "pesan": "Follow up cabut gigi", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-09", "sudahDikirim": true, "status": "Sent" },
+  { "id": 18, "pasienNama": "Nabila Putri", "pesan": "Reminder scaling", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-09", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 19, "pasienNama": "Fikri Hidayat", "pesan": "Kontrol gigi rutin", "tipe": "Reminder", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-09", "sudahDikirim": true, "status": "Sent" },
+  { "id": 20, "pasienNama": "Tiara Dewi", "pesan": "Reminder tambal gigi", "tipe": "Appointment", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-09", "sudahDikirim": false, "status": "Scheduled" },
+
+  { "id": 21, "pasienNama": "Reza Pratama", "pesan": "Follow up scaling", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-10", "sudahDikirim": true, "status": "Sent" },
+  { "id": 22, "pasienNama": "Sinta Lestari", "pesan": "Reminder cabut gigi", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-10", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 23, "pasienNama": "Arif Kurniawan", "pesan": "Kontrol gigi", "tipe": "Reminder", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-10", "sudahDikirim": true, "status": "Sent" },
+  { "id": 24, "pasienNama": "Wulan Sari", "pesan": "Reminder scaling gigi", "tipe": "Appointment", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-10", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 25, "pasienNama": "Bagas Saputra", "pesan": "Follow up tambal gigi", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-10", "sudahDikirim": true, "status": "Sent" },
+
+  { "id": 26, "pasienNama": "Melati Putri", "pesan": "Reminder cek gigi", "tipe": "Reminder", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-11", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 27, "pasienNama": "Doni Saputra", "pesan": "Kontrol behel", "tipe": "Appointment", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-11", "sudahDikirim": true, "status": "Sent" },
+  { "id": 28, "pasienNama": "Ayu Lestari", "pesan": "Reminder cabut gigi", "tipe": "Appointment", "reminderMethod": "Email", "tanggalNotifikasi": "2026-05-11", "sudahDikirim": false, "status": "Scheduled" },
+  { "id": 29, "pasienNama": "Kevin Pratama", "pesan": "Follow up scaling", "tipe": "Follow Up", "reminderMethod": "WhatsApp", "tanggalNotifikasi": "2026-05-11", "sudahDikirim": true, "status": "Sent" },
+  { "id": 30, "pasienNama": "Salsa Nur", "pesan": "Reminder tambal gigi", "tipe": "Appointment", "reminderMethod": "SMS", "tanggalNotifikasi": "2026-05-11", "sudahDikirim": false, "status": "Scheduled" }
+]

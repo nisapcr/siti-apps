@@ -1,8 +1,16 @@
 // src/pages/Keluhan.jsx
 import { useState } from "react";
 import { FiMessageSquare, FiAlertCircle, FiCheckCircle, FiClock, FiStar, FiSend } from "react-icons/fi";
-import { keluhanData, surveyData, formatTanggal } from "../data/dummyData";
+import data from "../data/keluhan.json";
 
+const { keluhanData, surveyData } = data;
+const formatTanggal = (tanggal) => {
+  return new Date(tanggal).toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
 const priorityConfig = {
   High:   { bg: "rgba(239,68,68,0.1)",   color: "#F87171" },
   Medium: { bg: "rgba(245,166,35,0.1)",  color: "#F5A623" },

@@ -1,8 +1,13 @@
-// src/pages/Pembayaran.jsx
 import { useState } from "react";
 import { FiCheckCircle, FiClock, FiPrinter, FiX, FiDownload } from "react-icons/fi";
-import { transaksiData, formatTanggal } from "../data/dummyData";
-
+import transaksiData from "../data/transaksi.json";
+const formatTanggal = (tanggal) => {
+  return new Date(tanggal).toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+};
 // ── Kwitansi Modal ──────────────────────────────────────────────────────────
 function KwitansiModal({ transaksi, onClose }) {
   const lunas = transaksi.statusPembayaran === "Lunas";

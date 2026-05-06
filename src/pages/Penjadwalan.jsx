@@ -1,23 +1,35 @@
 import { useState } from "react";
 import { FiCheckCircle, FiClock, FiSend, FiCalendar } from "react-icons/fi";
-import { jadwalData, formatTanggal } from "../data/dummyData";
+import jadwalData from "../data/jadwal.json";
 
+
+function formatTanggal(tgl) {
+  return new Date(tgl).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 export default function Penjadwalan() {
   const [filter, setFilter] = useState("all");
 
   const today = new Date().toISOString().split("T")[0];
   const jadwalHariIni = jadwalData.filter((j) => j.tanggal === today);
   const jadwalPending = jadwalData.filter((j) => j.status === "Pending");
-
+  const [search, setSearch] = useState("");
   const filteredJadwal =
-    filter === "all"
+    (filter === "all"
       ? jadwalData
-      : jadwalData.filter((j) => j.status.toLowerCase() === filter);
+      : jadwalData.filter((j) => j.status.toLowerCase() === filter.toLowerCase())
+    ).filter((j) =>
+      j.pasienNama.toLowerCase().includes(search.toLowerCase()) ||
+      j.layanan.toLowerCase().includes(search.toLowerCase())
+    );
 
   const stats = [
     { label: "Janji Hari Ini", value: jadwalHariIni.length, color: "#1FD4A0", bg: "rgba(31,212,160,0.08)", top: "#1FD4A0" },
-    { label: "Pending",        value: jadwalPending.length,  color: "#F5A623", bg: "rgba(245,166,35,0.08)",  top: "#F5A623" },
-    { label: "Total Jadwal",   value: jadwalData.length,     color: "#4A9EF5", bg: "rgba(74,158,245,0.08)",  top: "#4A9EF5" },
+    { label: "Pending", value: jadwalPending.length, color: "#F5A623", bg: "rgba(245,166,35,0.08)", top: "#F5A623" },
+    { label: "Total Jadwal", value: jadwalData.length, color: "#4A9EF5", bg: "rgba(74,158,245,0.08)", top: "#4A9EF5" },
   ];
 
   return (
@@ -74,7 +86,24 @@ export default function Penjadwalan() {
             ))}
           </div>
         </div>
-
+        <div style={{ marginLeft: 10 }}>
+          <input
+            type="text"
+            placeholder="Cari pasien / layanan..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              padding: "6px 10px",
+              borderRadius: 8,
+              border: "1px solid rgba(255,255,255,0.08)",
+              background: "#0f1117",
+              color: "#a0b0c0",
+              fontSize: 12,
+              outline: "none",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          />
+        </div>
         {/* Table */}
         <div style={{ overflowX: "auto" }}>
           <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 700 }}>
@@ -88,6 +117,13 @@ export default function Penjadwalan() {
               </tr>
             </thead>
             <tbody>
+              {filteredJadwal.length === 0 && (
+                <tr>
+                  <td colSpan="6" style={{ padding: "32px 16px", textAlign: "center", color: "#3d4f5e", fontSize: 13 }}>
+                    Tidak ada jadwal
+                  </td>
+                </tr>
+              )}
               {filteredJadwal.map((item) => (
                 <tr key={item.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)", transition: "background 0.15s" }}
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}

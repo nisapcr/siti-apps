@@ -1,0 +1,11 @@
+{
+  "totalPasien": 234,
+  "pasienBaruBulanIni": 45,
+  "jadwalHariIni": 8,
+  "jadwalMingguIni": 32,
+  "pendapatanBulanIni": 45000000,
+  "pendapatanBulanLalu": 42000000,
+  "persentaseKenaikan": 7.14,
+  "perawatanTerbanyak": "Scaling",
+  "tingkatKepuasan": 94.5
+}

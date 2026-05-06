@@ -1,7 +1,6 @@
-// src/pages/Loyalitas.jsx
 import { useState } from "react";
 import { FiStar, FiGift, FiAward, FiZap, FiChevronRight } from "react-icons/fi";
-import { loyalitasData } from "../data/dummyData";
+import loyalitasData from "../data/loyalitas.json";
 
 const levelConfig = {
   Bronze: {
