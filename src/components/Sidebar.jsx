@@ -25,17 +25,23 @@ const navItems = [
 
 export default function Sidebar() {
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh",
-      width: 220,
-      minWidth: 220,
-      background: "#161a26",
-      borderRight: "1px solid rgba(255,255,255,0.06)",
-      padding: "24px 0",
-      fontFamily: "'DM Sans', sans-serif",
-    }}>
+   // Update style div pembungkus utama Sidebar
+<div style={{
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
+  width: 220,
+  minWidth: 220,
+  // Hapus position: fixed, left, top, dan zIndex
+  background: "#161a26",
+  borderRight: "1px solid rgba(255,255,255,0.06)",
+  padding: "24px 0",
+  fontFamily: "'DM Sans', sans-serif",
+  overflowY: "auto",
+  scrollbarWidth: "none",
+  position: "sticky", // Gunakan sticky agar tetap diam saat konten di-scroll
+  top: 0,
+}}>
 
       {/* Brand */}
       <div style={{ padding: "0 20px 28px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>

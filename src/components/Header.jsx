@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa";
-const [search, setSearch] = useState("");
 export default function Header() {
+  const [search, setSearch] = useState("");
   return (
     <div style={{
       display: "flex",
