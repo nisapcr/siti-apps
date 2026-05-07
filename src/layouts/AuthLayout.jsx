@@ -1,69 +1,106 @@
 import { Outlet } from "react-router-dom";
 
 export default function AuthLayout() {
+  const mintColor = "#4FD1C5";
+
   return (
     <div style={{
       minHeight: "100vh",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background: "#0f1117",
-      fontFamily: "'DM Sans', sans-serif",
+      background: "#F7FAFC", // Background light yang bersih
+      fontFamily: "'Inter', sans-serif",
       position: "relative",
       overflow: "hidden",
     }}>
-      {/* Subtle bg glow */}
+      {/* Background Decorative Circles (Ciri khas Purity UI) */}
       <div style={{
-        position: "absolute", top: "-20%", left: "50%",
-        transform: "translateX(-50%)",
-        width: 600, height: 400,
-        background: "radial-gradient(ellipse, rgba(31,212,160,0.06) 0%, transparent 70%)",
+        position: "absolute", 
+        top: "-10%", 
+        right: "-5%",
+        width: 400, 
+        height: 400,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, rgba(79,209,197,0.1) 0%, transparent 70%)`,
         pointerEvents: "none",
       }} />
 
-      {/* Card */}
       <div style={{
-        background: "#161a26",
-        border: "1px solid rgba(255,255,255,0.07)",
-        borderRadius: 20,
-        padding: "40px 36px",
-        width: "100%",
-        maxWidth: 420,
-        position: "relative",
-        boxShadow: "0 24px 64px rgba(0,0,0,0.4)",
-      }}>
-        {/* Top accent */}
-        <div style={{
-          position: "absolute", top: 0, left: "20%", right: "20%", height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(31,212,160,0.4), transparent)",
-        }} />
+        position: "absolute", 
+        bottom: "-10%", 
+        left: "-5%",
+        width: 400, 
+        height: 400,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, rgba(79,209,197,0.1) 0%, transparent 70%)`,
+        pointerEvents: "none",
+      }} />
 
-        {/* Logo */}
+      {/* Card Container */}
+      <div style={{
+        background: "#FFFFFF",
+        border: "1px solid #E9ECEF",
+        borderRadius: 24,
+        padding: "48px 40px",
+        width: "100%",
+        maxWidth: 450,
+        position: "relative",
+        boxShadow: "0 20px 40px rgba(0,0,0,0.04)",
+        zIndex: 1,
+      }}>
+        
+        {/* Logo Section */}
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: 48, height: 48,
-            background: "linear-gradient(135deg, #1FD4A0, #0FA877)",
-            borderRadius: 14,
-            marginBottom: 12,
+            width: 56, height: 56,
+            background: mintColor,
+            borderRadius: 16,
+            marginBottom: 16,
+            boxShadow: `0px 10px 20px rgba(79, 209, 197, 0.3)`,
           }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f1117" strokeWidth="2.5" strokeLinecap="round">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
               <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/>
               <path d="M8 12h8M12 8v8"/>
             </svg>
           </div>
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 24, fontWeight: 600, color: "#fff" }}>
-            DentiCare
-          </div>
-          <div style={{ fontSize: 11, color: "#3d4f5e", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 4 }}>
-            Clinic CRM System
-          </div>
+          
+          <h2 style={{ 
+            fontSize: 28, 
+            fontWeight: 800, 
+            color: "#2D3748", 
+            margin: 0,
+            letterSpacing: "-1px" 
+          }}>
+           PERMATA<span style={{ color: mintColor }}>DENTAL</span>
+          </h2>
+          <p style={{ 
+            fontSize: 13, 
+            color: "#A0AEC0", 
+            fontWeight: 500, 
+            marginTop: 8,
+            textTransform: "uppercase",
+            letterSpacing: "1px"
+          }}>
+            Klinik Gigi Modern
+          </p>
         </div>
 
-        <Outlet />
+        {/* Form Content (Login/Register) */}
+        <div style={{ minHeight: 200 }}>
+           <Outlet />
+        </div>
 
-        <p style={{ textAlign: "center", fontSize: 11, color: "#2a3a4a", marginTop: 28 }}>
-          © 2025 DentiCare Clinic CRM. All rights reserved.
+        {/* Footer */}
+        <p style={{ 
+          textAlign: "center", 
+          fontSize: 12, 
+          color: "#CBD5E0", 
+          marginTop: 40,
+          fontWeight: 500 
+        }}>
+          © 2026 Permata Clinic. <br/> Built for professional healthcare.
         </p>
       </div>
     </div>

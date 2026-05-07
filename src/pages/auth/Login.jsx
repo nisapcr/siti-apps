@@ -3,27 +3,29 @@ import { useNavigate, Link } from "react-router-dom";
 import { FiMail, FiLock, FiAlertCircle, FiLoader } from "react-icons/fi";
 import axios from "axios";
 
+// Definisi Warna Mint
+const mintColor = "#4FD1C5";
+
 const inputStyle = {
   width: "100%",
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 10,
-  padding: "10px 14px 10px 40px",
-  color: "#a0b0c0",
-  fontSize: 13,
+  background: "#F8F9FA", // Light background untuk input
+  border: "1px solid #E2E8F0",
+  borderRadius: 12,
+  padding: "12px 14px 12px 42px",
+  color: "#2D3748",
+  fontSize: 14,
   outline: "none",
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   boxSizing: "border-box",
-  transition: "border-color 0.2s",
+  transition: "all 0.2s ease",
 };
 
 const labelStyle = {
   display: "block",
-  fontSize: 12,
-  fontWeight: 500,
-  color: "#6a7a8a",
-  marginBottom: 6,
-  letterSpacing: "0.02em",
+  fontSize: 13,
+  fontWeight: 600,
+  color: "#4A5568",
+  marginBottom: 8,
 };
 
 export default function Login() {
@@ -52,76 +54,97 @@ export default function Login() {
         navigate("/");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Login gagal. Periksa username dan password.");
+      setError(err.response?.data?.message || "Login gagal. Periksa kembali akun Anda.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <h2 style={{ fontSize: 18, fontWeight: 500, color: "#d0dde8", marginBottom: 24, textAlign: "center", letterSpacing: "0.01em" }}>
-        Selamat Datang Kembali
-      </h2>
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ marginBottom: 32, textAlign: "center" }}>
+        <h3 style={{ fontSize: 20, fontWeight: 700, color: "#2D3748", margin: 0 }}>
+          Selamat Datang Kembali
+        </h3>
+        <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 4 }}>
+          Masuk untuk mengelola data klinik Anda
+        </p>
+      </div>
 
-      {/* Error */}
+      {/* Error Alert */}
       {error && (
         <div style={{
-          background: "rgba(245,57,57,0.08)",
-          border: "1px solid rgba(245,57,57,0.2)",
-          color: "#f57272",
-          padding: "10px 14px",
-          borderRadius: 10,
-          marginBottom: 16,
-          display: "flex", alignItems: "center", gap: 8,
+          background: "#FFF5F5",
+          border: "1px solid #FED7D7",
+          color: "#E53E3E",
+          padding: "12px 16px",
+          borderRadius: 12,
+          marginBottom: 20,
+          display: "flex", alignItems: "center", gap: 10,
           fontSize: 13,
+          fontWeight: 500
         }}>
-          <FiAlertCircle size={14} /> {error}
+          <FiAlertCircle size={16} /> {error}
         </div>
       )}
 
-      {/* Loading */}
+      {/* Loading Indicator */}
       {loading && (
         <div style={{
-          background: "rgba(31,212,160,0.06)",
-          border: "1px solid rgba(31,212,160,0.15)",
-          color: "#1FD4A0",
-          padding: "10px 14px",
-          borderRadius: 10,
-          marginBottom: 16,
-          display: "flex", alignItems: "center", gap: 8,
+          background: "rgba(79, 209, 197, 0.1)",
+          border: `1px solid rgba(79, 209, 197, 0.2)`,
+          color: mintColor,
+          padding: "12px 16px",
+          borderRadius: 12,
+          marginBottom: 20,
+          display: "flex", alignItems: "center", gap: 10,
           fontSize: 13,
+          fontWeight: 600
         }}>
-          <FiLoader size={14} style={{ animation: "spin 1s linear infinite" }} />
-          Memproses...
+          <FiLoader size={16} style={{ animation: "spin 1s linear infinite" }} />
+          Sedang memverifikasi...
         </div>
       )}
 
       <form onSubmit={handleSubmit}>
         {/* Username */}
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: 18 }}>
           <label style={labelStyle}>Username</label>
           <div style={{ position: "relative" }}>
-            <FiMail style={{ position: "absolute", left: 13, top: "50%", transform: "translateY(-50%)", color: "#4a5a6a", fontSize: 14 }} />
+            <FiMail style={{ 
+                position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", 
+                color: "#A0AEC0", fontSize: 16 
+            }} />
             <input
               type="text"
               name="username"
               value={dataForm.username}
               onChange={handleChange}
-              placeholder="emilys"
+              placeholder="Masukkan username"
               required
               style={inputStyle}
-              onFocus={(e) => (e.target.style.borderColor = "rgba(31,212,160,0.35)")}
-              onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+              onFocus={(e) => {
+                  e.target.style.borderColor = mintColor;
+                  e.target.style.background = "#fff";
+                  e.target.style.boxShadow = `0 0 0 3px rgba(79, 209, 197, 0.1)`;
+              }}
+              onBlur={(e) => {
+                  e.target.style.borderColor = "#E2E8F0";
+                  e.target.style.background = "#F8F9FA";
+                  e.target.style.boxShadow = "none";
+              }}
             />
           </div>
         </div>
 
         {/* Password */}
-        <div style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: 28 }}>
           <label style={labelStyle}>Password</label>
           <div style={{ position: "relative" }}>
-            <FiLock style={{ position: "absolute", left: 13, top: "50%", transform: "translateY(-50%)", color: "#4a5a6a", fontSize: 14 }} />
+            <FiLock style={{ 
+                position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", 
+                color: "#A0AEC0", fontSize: 16 
+            }} />
             <input
               type="password"
               name="password"
@@ -130,64 +153,65 @@ export default function Login() {
               placeholder="••••••••"
               required
               style={inputStyle}
-              onFocus={(e) => (e.target.style.borderColor = "rgba(31,212,160,0.35)")}
-              onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+              onFocus={(e) => {
+                e.target.style.borderColor = mintColor;
+                e.target.style.background = "#fff";
+                e.target.style.boxShadow = `0 0 0 3px rgba(79, 209, 197, 0.1)`;
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "#E2E8F0";
+                e.target.style.background = "#F8F9FA";
+                e.target.style.boxShadow = "none";
+              }}
             />
           </div>
         </div>
 
-        {/* Submit */}
+        {/* Submit Button */}
         <button
           type="submit"
           disabled={loading}
           style={{
             width: "100%",
-            background: loading ? "rgba(31,212,160,0.4)" : "linear-gradient(135deg, #1FD4A0, #0FA877)",
-            color: "#0f1117",
+            background: loading ? "#CBD5E0" : mintColor,
+            color: "#FFFFFF",
             fontWeight: 700,
-            fontSize: 14,
-            padding: "11px",
-            borderRadius: 10,
+            fontSize: 15,
+            padding: "13px",
+            borderRadius: 14,
             border: "none",
             cursor: loading ? "not-allowed" : "pointer",
-            fontFamily: "'DM Sans', sans-serif",
-            letterSpacing: "0.02em",
-            transition: "opacity 0.2s",
+            fontFamily: "'Inter', sans-serif",
+            transition: "all 0.2s ease",
+            boxShadow: loading ? "none" : `0px 4px 12px rgba(79, 209, 197, 0.3)`,
           }}
-          onMouseEnter={(e) => { if (!loading) e.currentTarget.style.opacity = "0.88"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
+          onMouseEnter={(e) => { if (!loading) e.currentTarget.style.transform = "translateY(-1px)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
         >
-          {loading ? "Loading..." : "Masuk"}
+          {loading ? "Menghubungkan..." : "Masuk ke Dashboard"}
         </button>
       </form>
 
-      {/* Links */}
-      <div style={{ marginTop: 18, textAlign: "center", fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-        <Link to="/forgot" style={{ color: "#1FD4A0", textDecoration: "none" }}
-          onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
-          onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
-        >Lupa password?</Link>
-        <span style={{ color: "#2a3a4a" }}>|</span>
-        <Link to="/register" style={{ color: "#1FD4A0", textDecoration: "none" }}
-          onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
-          onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
-        >Daftar baru</Link>
+      {/* Footer Links */}
+      <div style={{ marginTop: 24, textAlign: "center", fontSize: 14, color: "#718096" }}>
+        <Link to="/forgot" style={{ color: mintColor, textDecoration: "none", fontWeight: 600 }}>Lupa password?</Link>
+        <span style={{ margin: "0 10px", color: "#E2E8F0" }}>|</span>
+        <Link to="/register" style={{ color: mintColor, textDecoration: "none", fontWeight: 600 }}>Daftar akun</Link>
       </div>
 
-      {/* Demo credentials */}
+      {/* Demo Box */}
       <div style={{
-        marginTop: 20,
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.06)",
-        borderRadius: 10,
-        padding: "10px 14px",
+        marginTop: 32,
+        background: "#F7FAFC",
+        borderRadius: 12,
+        padding: "12px",
         textAlign: "center",
-        fontSize: 11,
-        color: "#3d4f5e",
-        lineHeight: 1.7,
+        fontSize: 12,
+        color: "#718096",
+        border: "1px dashed #E2E8F0"
       }}>
-        <p style={{ color: "#4a5a6a", marginBottom: 2 }}>Demo Login</p>
-        <p>Username: <span style={{ color: "#1FD4A0" }}>emilys</span> · Password: <span style={{ color: "#1FD4A0" }}>emilyspass</span></p>
+        <p style={{ fontWeight: 700, color: "#A0AEC0", marginBottom: 4, textTransform: "uppercase" }}>Akses Demo</p>
+        <p>User: <span style={{ color: mintColor, fontWeight: 700 }}>emilys</span> · Pass: <span style={{ color: mintColor, fontWeight: 700 }}>emilyspass</span></p>
       </div>
 
       <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>

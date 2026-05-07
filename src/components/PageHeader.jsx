@@ -1,31 +1,57 @@
 export default function PageHeader({ title, breadcrumb, children }) {
+  const mintColor = "#4FD1C5";
+
   return (
     <div style={{
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 24,
-      fontFamily: "'DM Sans', sans-serif",
+      marginBottom: 30,
+      fontFamily: "'Inter', sans-serif", // Font standar CRM modern
     }}>
       <div>
+        {/* Title dengan warna Navy Tua */}
         <h1 style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: 22,
-          fontWeight: 600,
-          color: "#fff",
+          fontSize: 24,
+          fontWeight: 700,
+          color: "#2D3748",
           margin: 0,
         }}>{title}</h1>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 5, fontSize: 12 }}>
-          <span style={{ color: "#3d4f5e" }}>Dashboard</span>
+        
+        {/* Breadcrumb Section */}
+        <div style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          gap: 6, 
+          marginTop: 6, 
+          fontSize: 13 
+        }}>
+          <span style={{ color: "#A0AEC0", fontWeight: "500" }}>Pages</span>
+          
+          <span style={{ color: "#CBD5E0" }}>/</span>
+          
+          <span style={{ color: "#A0AEC0", fontWeight: "500" }}>Dashboard</span>
+          
           {breadcrumb && (
             <>
-              <span style={{ color: "#2a3a4a" }}>/</span>
-              <span style={{ color: "#1FD4A0" }}>{breadcrumb}</span>
+              <span style={{ color: "#CBD5E0" }}>/</span>
+              <span style={{ 
+                color: mintColor, 
+                fontWeight: "600" 
+              }}>
+                {breadcrumb}
+              </span>
             </>
           )}
         </div>
       </div>
-      {children && <div>{children}</div>}
+
+      {/* Area untuk Button atau Action tambahan */}
+      {children && (
+        <div style={{ display: "flex", gap: 12 }}>
+          {children}
+        </div>
+      )}
     </div>
   );
 }

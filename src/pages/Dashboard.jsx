@@ -1,230 +1,161 @@
-// src/pages/Dashboard.jsx
-import { FiUsers, FiCalendar, FiDollarSign, FiActivity, FiCheckCircle } from "react-icons/fi";
-import statistikData from "../data/statistik.json";
-import aktivitasData from "../data/aktivitas.json";
+import React from "react";
+import { FiUsers, FiActivity, FiCalendar, FiClock, FiPlusCircle } from "react-icons/fi";
+import CardStats from "../components/Card.jsx";
 
-const iconMap = { teal: "#1FD4A0", blue: "#4A9EF5", amber: "#F5A623", purple: "#8B5CF6" };
-
-const colorMap = {
-  teal:   { bg: "rgba(31,212,160,0.08)",  accent: "#1FD4A0", iconBg: "rgba(31,212,160,0.12)",  top: "#1FD4A0" },
-  blue:   { bg: "rgba(74,158,245,0.08)",  accent: "#4A9EF5", iconBg: "rgba(74,158,245,0.12)",  top: "#4A9EF5" },
-  amber:  { bg: "rgba(245,166,35,0.08)",  accent: "#F5A623", iconBg: "rgba(245,166,35,0.12)",  top: "#F5A623" },
-  purple: { bg: "rgba(139,92,246,0.08)", accent: "#8B5CF6", iconBg: "rgba(139,92,246,0.12)", top: "#8B5CF6" },
-};
-
-const activityColors = { Jadwal: "blue", "Pasien Baru": "teal", Reminder: "amber", Selesai: "teal" };
-const badgeBg = { teal: "rgba(31,212,160,0.1)", blue: "rgba(74,158,245,0.1)", amber: "rgba(245,166,35,0.1)" };
-
-export default function Dashboard() {
+export default function DentalDashboard() {
+  // 1. Pastikan isi stats ada 4 objek untuk 4 card di atas
   const stats = [
-    { title: "Total Pasien", value: statistikData.totalPasien, icon: FiUsers, color: "teal", change: `+${statistikData.pasienBaruBulanIni} bulan ini` },
-    { title: "Jadwal Hari Ini", value: statistikData.jadwalHariIni, icon: FiCalendar, color: "blue", change: `${statistikData.jadwalMingguIni} minggu ini` },
-    { title: "Pendapatan", value: `Rp${(statistikData.pendapatanBulanIni / 1000000).toFixed(0)}jt`, icon: FiDollarSign, color: "amber", change: `+${statistikData.persentaseKenaikan}%` },
-    { title: "Kepuasan", value: `${statistikData.tingkatKepuasan}%`, icon: FiActivity, color: "purple", change: "Dari survey" }
+    { title: "Pasien Hari Ini", value: "42", change: "+12%", icon: FiUsers },
+    { title: "Dokter Aktif", value: "8", change: "+2", icon: FiActivity },
+    { title: "Total Janji Temu", value: "156", change: "+5%", icon: FiCalendar },
+    { title: "Waktu Tunggu", value: "14m", change: "-3m", icon: FiClock },
   ];
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      {/* Header */}
-      <div style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 22, fontWeight: 600, color: "#fff", fontFamily: "'Playfair Display', serif", margin: 0 }}>
-          Dashboard
-        </h1>
-        <p style={{ color: "#4a5a6a", fontSize: 13, marginTop: 4 }}>
-          Selamat datang kembali, Dr. Sarah
-        </p>
+    <div style={{ padding: "24px", background: "#F8F9FA", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
+      
+      {/* SECTION ATAS: 4 Card Statistik (Gunakan Grid 4 Kolom) */}
+      <div style={gridStatsStyle}>
+        {stats.map((item, idx) => (
+          <CardStats key={idx} {...item} />
+        ))}
       </div>
 
-      {/* Stats Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 28 }}>
-        {stats.map((stat, idx) => {
-          const c = colorMap[stat.color];
-          const Icon = stat.icon;
-          return (
-            <div
-              key={idx}
-              style={{
-                background: "#161a26",
-                border: "1px solid rgba(255,255,255,0.06)",
-                borderRadius: 14,
-                padding: "18px 20px",
-                position: "relative",
-                overflow: "hidden"
-              }}
-            >
-              {/* Top gradient bar */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 2,
-                  background: `linear-gradient(90deg, ${c.top}, transparent)`
-                }}
-              />
-              
-              {/* Title */}
-              <div
-                style={{
-                  fontSize: 11,
-                  color: "#4a5a6a",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  marginBottom: 12
-                }}
-              >
-                {stat.title}
-              </div>
-              
-              {/* Value and Icon */}
-              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
-                <div style={{ fontSize: 28, fontWeight: 600, color: c.accent, lineHeight: 1 }}>
-                  {stat.value}
-                </div>
-                <div style={{ background: c.iconBg, borderRadius: 10, padding: 8 }}>
-                  <Icon style={{ color: c.accent, fontSize: 16 }} />
-                </div>
-              </div>
-              
-              {/* Change badge */}
-              <div style={{ marginTop: 12 }}>
-                <span
-                  style={{
-                    fontSize: 11,
-                    padding: "3px 8px",
-                    borderRadius: 20,
-                    background: "rgba(31,212,160,0.1)",
-                    color: "#1FD4A0"
-                  }}
-                >
-                  {stat.change}
-                </span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Two Column Layout */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 16 }}>
+      {/* SECTION UTAMA: Tabel & Antrian */}
+      <div style={mainContentGrid}>
         
-        {/* Aktivitas Terbaru */}
-        <div
-          style={{
-            background: "#161a26",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: 14,
-            padding: 20
-          }}
-        >
-          {/* Header */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+        {/* PANEL KIRI: Tabel Perawatan */}
+        <div style={cardStyle}>
+          <div style={headerSection}>
             <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, color: "#d0dde8" }}>
-                Aktivitas Terbaru
-              </div>
-              <div style={{ fontSize: 11, color: "#4a5a6a", marginTop: 2 }}>
-                Semua aktivitas klinik
-              </div>
+              <h3 style={cardTitle}>Progres Perawatan Pasien</h3>
+              <p style={cardSubTitle}><span style={{ color: "#4FD1C5", fontWeight: "bold" }}>12 tindakan</span> selesai hari ini</p>
             </div>
-            <span style={{ fontSize: 11, color: "#1FD4A0", cursor: "pointer" }}>
-              Lihat semua →
-            </span>
+            <button style={actionBtn}><FiPlusCircle /> Pasien Baru</button>
           </div>
 
-          {/* Activity List */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {aktivitasData.map((activity) => {
-              const col = activityColors[activity.tipe] || "teal";
-              return (
-                <div
-                  key={activity.id}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: 12,
-                    padding: "12px 0",
-                    borderBottom: "1px solid rgba(255,255,255,0.04)"
-                  }}
-                >
-                  {/* Icon */}
-                  <div
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 8,
-                      background: badgeBg[col],
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0
-                    }}
-                  >
-                    <FiCheckCircle style={{ color: iconMap[col], fontSize: 14 }} />
-                  </div>
-                  
-                  {/* Description */}
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, color: "#a0b0c0", lineHeight: 1.4 }}>
-                      <strong style={{ color: "#d0dde8", fontWeight: 500 }}>
-                        {activity.deskripsi}
-                      </strong>
-                    </div>
-                    <div style={{ fontSize: 11, color: "#3d4f5e", marginTop: 3 }}>
-                      {activity.waktu}
-                    </div>
-                  </div>
-                  
-                  {/* Badge */}
-                  <span
-                    style={{
-                      fontSize: 10,
-                      padding: "2px 8px",
-                      borderRadius: 20,
-                      background: badgeBg[col],
-                      color: iconMap[col],
-                      whiteSpace: "nowrap"
-                    }}
-                  >
-                    {activity.tipe}
-                  </span>
-                </div>
-              );
-            })}
+          <div style={{ overflowX: "auto" }}>
+            <table style={tableStyle}>
+              <thead>
+                <tr>
+                  <th style={thStyle}>PASIEN & TINDAKAN</th>
+                  <th style={thStyle}>DOKTER GIGI</th>
+                  <th style={thStyle}>BIAYA</th>
+                  <th style={thStyle}>PROGRES</th>
+                </tr>
+              </thead>
+              <tbody>
+                {treatmentData.map((proj, idx) => (
+                  <tr key={idx} style={{ borderBottom: "1px solid #E9ECEF" }}>
+                    <td style={tdStyle}>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <span style={{ fontWeight: "bold", color: "#2D3748" }}>{proj.patient}</span>
+                        <span style={{ fontSize: "12px", color: "#A0AEC0" }}>{proj.type}</span>
+                      </div>
+                    </td>
+                    <td style={tdStyle}>{proj.doctor}</td>
+                    <td style={tdStyle}>{proj.budget}</td>
+                    <td style={tdStyle}>
+                      <div style={{ width: "100px" }}>
+                        <span style={progressLabel}>{proj.completion}%</span>
+                        <div style={progressContainer}>
+                          <div style={{ ...progressFill, width: `${proj.completion}%` }} />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
-        {/* Jadwal Ringkas */}
-        <div
-          style={{
-            background: "#161a26",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: 14,
-            padding: 20
-          }}
-        >
-          {/* Header */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, color: "#d0dde8" }}>
-              Jadwal Hari Ini
-            </div>
-            <span style={{ fontSize: 11, color: "#1FD4A0", cursor: "pointer" }}>
-              Semua →
-            </span>
-          </div>
+        {/* PANEL KANAN: Antrian */}
+        <div style={cardStyle}>
+          <h3 style={cardTitle}>Antrian Terkini</h3>
+          <p style={cardSubTitle}><span style={{ color: "#4FD1C5", fontWeight: "bold" }}>+30%</span> dari kemarin</p>
           
-          {/* Count */}
-          <div style={{ fontSize: 11, color: "#4a5a6a", marginBottom: 14 }}>
-            {statistikData.jadwalHariIni} janji temu
-          </div>
-          
-          {/* Placeholder */}
-          <div style={{ fontSize: 12, color: "#6a7a8a", textAlign: "center", padding: "20px 0" }}>
-            Jadwal hari ini akan tampil di sini
+          <div style={{ marginTop: "24px" }}>
+            {queueData.map((q, idx) => (
+              <div key={idx} style={timelineItem}>
+                <div style={timelineIconContainer}>
+                   {/* Garis Vertikal */}
+                  <div style={{ ...timelineLine, visibility: idx === queueData.length - 1 ? 'hidden' : 'visible' }} />
+                  {/* Titik Timeline */}
+                  <div style={{ ...timelineDot, borderColor: q.color }} />
+                </div>
+                <div style={{ paddingBottom: "24px" }}>
+                  <p style={timelineText}>{q.task}</p>
+                  <p style={timelineTime}>{q.time}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+// --- DATA DUMMY ---
+const treatmentData = [
+  { patient: "Andi Herlambang", type: "Pemasangan Behel", doctor: "drg. Shinta", budget: "Rp 8.500.000", completion: 60 },
+  { patient: "Siti Aminah", type: "Implan Gigi", doctor: "drg. Budi", budget: "Rp 12.000.000", completion: 10 },
+  { patient: "Rudi Tabuti", type: "Scaling & Cleaning", doctor: "drg. Denny", budget: "Rp 500.000", completion: 100 },
+  { patient: "Clara Shinta", type: "Veneer Gigi", doctor: "drg. Shinta", budget: "Rp 25.000.000", completion: 40 },
+];
+
+const queueData = [
+  { task: "Pencabutan Gigi Geraham - Pasien #421", time: "22 DEC 7:20 PM", color: "#4FD1C5" },
+  { task: "Konsultasi Dokter Baru - Pasien #422", time: "21 DEC 11:21 PM", color: "#E53E3E" },
+  { task: "Pembayaran Laboratorium - Ortho", time: "21 DEC 9:28 PM", color: "#4299E1" },
+  { task: "Pendaftaran Pasien Member Baru", time: "20 DEC 3:52 PM", color: "#ECC94B" },
+];
+
+// --- CSS IN JS (Purity UI Style) ---
+const gridStatsStyle = { 
+  display: "grid", 
+  gridTemplateColumns: "repeat(4, 1fr)", // PAKSA 4 KOLOM
+  gap: "24px", 
+  marginBottom: "24px" 
+};
+
+// Gunakan media query (cek lebar layar) untuk responsivitas jika perlu
+if (window.innerWidth < 1200) {
+    gridStatsStyle.gridTemplateColumns = "repeat(2, 1fr)";
+}
+if (window.innerWidth < 600) {
+    gridStatsStyle.gridTemplateColumns = "1fr";
+}
+
+const mainContentGrid = { 
+  display: "grid", 
+  gridTemplateColumns: "2fr 1fr", 
+  gap: "24px" 
+};
+
+const cardStyle = { 
+  background: "#fff", 
+  borderRadius: "15px", 
+  padding: "22px", 
+  boxShadow: "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)",
+  height: "fit-content"
+};
+
+const headerSection = { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" };
+const cardTitle = { margin: 0, fontSize: "18px", fontWeight: "bold", color: "#2D3748" };
+const cardSubTitle = { margin: "4px 0 0 0", fontSize: "14px", color: "#A0AEC0" };
+const actionBtn = { background: "#4FD1C5", color: "#fff", border: "none", padding: "8px 16px", borderRadius: "8px", fontWeight: "bold", display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" };
+const tableStyle = { width: "100%", borderCollapse: "collapse" };
+const thStyle = { textAlign: "left", fontSize: "10px", color: "#A0AEC0", padding: "12px 0", borderBottom: "1px solid #E9ECEF" };
+const tdStyle = { padding: "16px 0", fontSize: "14px", color: "#718096" };
+const progressContainer = { width: "100%", height: "4px", background: "#E9ECEF", borderRadius: "10px", marginTop: "4px" };
+const progressFill = { height: "100%", background: "#4FD1C5", borderRadius: "10px" };
+const progressLabel = { fontSize: "12px", fontWeight: "bold", color: "#4FD1C5" };
+
+const timelineItem = { display: "flex", gap: "20px", position: "relative" };
+const timelineIconContainer = { display: "flex", flexDirection: "column", alignItems: "center", width: "20px" };
+const timelineDot = { width: "12px", height: "12px", borderRadius: "50%", border: "2px solid", background: "#fff", zIndex: 2 };
+const timelineLine = { width: "2px", height: "100%", background: "#E9ECEF", position: "absolute", top: "12px", zIndex: 1 };
+const timelineText = { margin: 0, fontSize: "14px", fontWeight: "bold", color: "#2D3748" };
+const timelineTime = { margin: "4px 0 0 0", fontSize: "12px", color: "#A0AEC0" };

@@ -1,45 +1,108 @@
 import { Link } from "react-router-dom";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiArrowLeft } from "react-icons/fi";
 
 export default function Forgot() {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold text-gray-700 mb-2 text-center">
-        Lupa Password
-      </h2>
-      <p className="text-sm text-gray-500 text-center mb-6">
-        Masukkan email Anda untuk menerima link reset password
-      </p>
+  const mintColor = "#4FD1C5";
 
-      <form>
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email
+  return (
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ marginBottom: 32, textAlign: "center" }}>
+        <h3 style={{ fontSize: 22, fontWeight: 700, color: "#2D3748", margin: 0 }}>
+          Lupa Password?
+        </h3>
+        <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 8, lineHeight: "1.5" }}>
+          Jangan khawatir! Masukkan email Anda dan kami akan mengirimkan instruksi pemulihan.
+        </p>
+      </div>
+
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div style={{ marginBottom: 24 }}>
+          <label style={{
+            display: "block",
+            fontSize: 13,
+            fontWeight: 600,
+            color: "#4A5568",
+            marginBottom: 8,
+          }}>
+            Alamat Email
           </label>
-          <div className="relative">
-            <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <div style={{ position: "relative" }}>
+            <FiMail style={{ 
+              position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", 
+              color: "#A0AEC0", fontSize: 16 
+            }} />
             <input
               type="email"
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-              placeholder="you@example.com"
+              placeholder="nama@email.com"
+              style={{
+                width: "100%",
+                background: "#F8F9FA",
+                border: "1px solid #E2E8F0",
+                borderRadius: 12,
+                padding: "12px 14px 12px 42px",
+                color: "#2D3748",
+                fontSize: 14,
+                outline: "none",
+                fontFamily: "'Inter', sans-serif",
+                boxSizing: "border-box",
+                transition: "all 0.2s ease",
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = mintColor;
+                e.target.style.background = "#fff";
+                e.target.style.boxShadow = `0 0 0 3px rgba(79, 209, 197, 0.1)`;
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = "#E2E8F0";
+                e.target.style.background = "#F8F9FA";
+                e.target.style.boxShadow = "none";
+              }}
             />
           </div>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition"
+          style={{
+            width: "100%",
+            background: mintColor,
+            color: "#FFFFFF",
+            fontWeight: 700,
+            fontSize: 15,
+            padding: "13px",
+            borderRadius: 14,
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "'Inter', sans-serif",
+            transition: "all 0.2s ease",
+            boxShadow: `0px 4px 12px rgba(79, 209, 197, 0.3)`,
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
         >
-          Kirim Reset Link
+          Kirim Link Pemulihan
         </button>
       </form>
 
-      <p className="text-center text-sm text-gray-500 mt-6">
-        Kembali ke{" "}
-        <Link to="/login" className="text-green-600 hover:underline">
-          Login
+      <div style={{ marginTop: 32, textAlign: "center" }}>
+        <Link 
+          to="/login" 
+          style={{ 
+            color: "#718096", 
+            textDecoration: "none", 
+            fontSize: 14, 
+            fontWeight: 600,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = mintColor)}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#718096")}
+        >
+          <FiArrowLeft /> Kembali ke Login
         </Link>
-      </p>
+      </div>
     </div>
   );
 }

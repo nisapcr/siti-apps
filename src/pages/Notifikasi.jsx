@@ -1,105 +1,124 @@
-import { FiBell, FiSend, FiClock } from "react-icons/fi";
+import { FiBell, FiSend, FiClock, FiCalendar, FiCheckCircle } from "react-icons/fi";
 import notifikasiData from "../data/notifikasi.json";
 
 export default function Notifikasi() {
   const formatTanggal = (tanggal) => {
-  return new Date(tanggal).toLocaleDateString("id-ID", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-};
+    return new Date(tanggal).toLocaleDateString("id-ID", {
+      day: "2-digit", month: "short", year: "numeric",
+    });
+  };
+
   const stats = [
-    { label: "Total Notifikasi", value: notifikasiData.length,                                          color: "#8B5CF6", top: "#8B5CF6", iconBg: "rgba(139,92,246,0.1)" },
-    { label: "Terjadwal",        value: notifikasiData.filter((n) => n.status === "Scheduled").length,  color: "#F5A623", top: "#F5A623", iconBg: "rgba(245,166,35,0.1)" },
-    { label: "Belum Dikirim",    value: notifikasiData.filter((n) => !n.sudahDikirim).length,           color: "#4A9EF5", top: "#4A9EF5", iconBg: "rgba(74,158,245,0.1)" },
+    { label: "Total Notif", value: notifikasiData.length, icon: FiBell },
+    { label: "Terjadwal", value: notifikasiData.filter(n => n.status === "Scheduled").length, icon: FiCalendar },
+    { label: "Terkirim", value: notifikasiData.filter(n => n.sudahDikirim).length, icon: FiCheckCircle },
   ];
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ padding: "24px", background: "#F8F9FA", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
       <div style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 22, fontWeight: 600, color: "#fff", fontFamily: "'Playfair Display', serif" }}>Notifikasi Perawatan Lanjutan</h1>
-        <p style={{ color: "#4a5a6a", fontSize: 13, marginTop: 4 }}>Pengingat otomatis untuk pasien</p>
+        <h2 style={{ color: "#2D3748", margin: 0, fontSize: "22px", fontWeight: "700" }}>Notifikasi Perawatan</h2>
+        <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "4px 0 0 0" }}>Pengingat otomatis jadwal kontrol pasien</p>
       </div>
 
-      {/* Stats */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14, marginBottom: 24 }}>
+      {/* Stats Grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px", marginBottom: "30px" }}>
         {stats.map((s, i) => (
-          <div key={i} style={{
-            background: "#161a26",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: 14,
-            padding: "18px 20px",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${s.top}, transparent)` }} />
-            <div style={{ fontSize: 11, color: "#4a5a6a", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>{s.label}</div>
-            <div style={{ fontSize: 28, fontWeight: 600, color: s.color, lineHeight: 1 }}>{s.value}</div>
+          <div key={i} style={cardStyle}>
+            <div>
+              <p style={statLabelStyle}>{s.label}</p>
+              <h4 style={statValueStyle}>{s.value}</h4>
+            </div>
+            <div style={iconBoxStyle}><s.icon size={20} color="#fff" /></div>
           </div>
         ))}
       </div>
 
-      {/* Notification Cards */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        {notifikasiData.map((notif) => (
-          <div
-            key={notif.id}
-            style={{
-              background: "#161a26",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 14,
-              padding: "18px 20px",
-              transition: "border-color 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(139,92,246,0.25)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}
-          >
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-              {/* Icon */}
-              <div style={{
-                width: 38, height: 38, borderRadius: 10,
-                background: "rgba(139,92,246,0.1)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0,
-              }}>
-                <FiBell style={{ color: "#8B5CF6", fontSize: 16 }} />
-              </div>
-
-              {/* Content */}
+      {/* List Notifikasi */}
+      <div style={cardStyleFull}>
+        <h3 style={cardTitleStyle}>Antrian Pengiriman Notifikasi</h3>
+        <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
+          {notifikasiData.map((notif) => (
+            <div key={notif.id} style={notifCardStyle}>
+              <div style={notifIconStyle}><FiBell color="#4FD1C5" /></div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 14, fontWeight: 500, color: "#d0dde8" }}>{notif.pasienNama}</div>
-                <div style={{ fontSize: 12, color: "#6a7a8a", marginTop: 4, lineHeight: 1.5 }}>{notif.pesan}</div>
-                <div style={{ display: "flex", gap: 16, marginTop: 10 }}>
-                  <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, color: "#4a5a6a" }}>
-                    <FiClock size={11} /> {notif.tipe}
-                  </span>
-                  <span style={{ fontSize: 11, color: "#4a5a6a" }}>Via: {notif.reminderMethod}</span>
-                  <span style={{ fontSize: 11, color: "#4a5a6a" }}>Jadwal: {formatTanggal(notif.tanggalNotifikasi)}</span>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span style={{ fontWeight: "700", color: "#2D3748" }}>{notif.pasienNama}</span>
+                  <span style={{ fontSize: "12px", color: "#A0AEC0" }}>{formatTanggal(notif.tanggalNotifikasi)}</span>
+                </div>
+                <p style={{ margin: "4px 0", fontSize: "13px", color: "#718096" }}>{notif.pesan}</p>
+                <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+                  <span style={smallInfoStyle}><FiClock size={12}/> {notif.tipe}</span>
+                  <span style={smallInfoStyle}>Via: {notif.reminderMethod}</span>
                 </div>
               </div>
-
-              {/* CTA Button */}
-              <button
-                style={{
-                  display: "flex", alignItems: "center", gap: 6,
-                  background: "linear-gradient(135deg, #1FD4A0, #0FA877)",
-                  color: "#0f1117", fontSize: 12, fontWeight: 600,
-                  padding: "8px 14px", borderRadius: 8,
-                  cursor: "pointer", border: "none",
-                  flexShrink: 0, alignSelf: "flex-start",
-                  fontFamily: "'DM Sans', sans-serif",
-                  transition: "opacity 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                <FiSend size={13} /> Kirim
-              </button>
+              <button style={btnActionStyle}><FiSend size={14} /> Kirim</button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 }
+
+// --- Shared Styles (Purity UI Theme) ---
+const cardStyle = {
+  background: "#FFFFFF", borderRadius: "15px", padding: "16px 20px",
+  display: "flex", alignItems: "center", justifyContent: "space-between",
+  boxShadow: "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)"
+};
+
+const cardStyleFull = {
+  background: "#FFFFFF", borderRadius: "15px", padding: "24px",
+  boxShadow: "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)"
+};
+
+const iconBoxStyle = {
+  width: "45px", height: "45px", background: "#4FD1C5",
+  borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center"
+};
+
+const statLabelStyle = { fontSize: "12px", color: "#A0AEC0", fontWeight: "700", margin: 0, textTransform: "uppercase" };
+const statValueStyle = { fontSize: "18px", fontWeight: "700", color: "#2D3748", margin: "4px 0 0 0" };
+const cardTitleStyle = { margin: 0, color: "#2D3748", fontSize: "16px", fontWeight: "700" };
+
+const tableRowStyle = {
+  display: "flex", alignItems: "center", gap: "15px", padding: "12px 0",
+  borderBottom: "1px solid #F0F0F0"
+};
+
+const rankBadgeStyle = (idx) => ({
+  width: "30px", height: "30px", borderRadius: "8px",
+  background: idx < 3 ? "#4FD1C515" : "#F7FAFC",
+  color: idx < 3 ? "#4FD1C5" : "#A0AEC0",
+  display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold", fontSize: "13px"
+});
+
+const badgeStyle = (cfg) => ({
+  fontSize: "10px", padding: "2px 8px", borderRadius: "6px",
+  background: cfg.bg, color: cfg.accent, fontWeight: "bold", textTransform: "uppercase"
+});
+
+const rewardItemStyle = {
+  padding: "15px", borderRadius: "12px", border: "1px solid #F0F0F0", textAlign: "center"
+};
+
+const notifCardStyle = {
+  display: "flex", gap: "15px", padding: "15px", borderRadius: "12px", border: "1px solid #F0F0F0"
+};
+
+const notifIconStyle = {
+  width: "35px", height: "35px", borderRadius: "10px", background: "#E6FFFA",
+  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
+};
+
+const smallInfoStyle = { display: "flex", alignItems: "center", gap: "4px", fontSize: "11px", color: "#A0AEC0", fontWeight: "600" };
+
+const btnSmallStyle = {
+  background: "#4FD1C5", color: "#fff", border: "none", padding: "6px 12px",
+  borderRadius: "8px", cursor: "pointer", fontWeight: "bold", fontSize: "11px", display: "flex", alignItems: "center", gap: "4px"
+};
+
+const btnActionStyle = {
+  ...btnSmallStyle, padding: "8px 16px", fontSize: "13px", alignSelf: "center"
+};

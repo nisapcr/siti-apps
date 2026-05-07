@@ -7,7 +7,6 @@ import {
   FaBell,
   FaSignOutAlt,
   FaStar,
-  FaRegCommentDots,
 } from "react-icons/fa";
 import { FiDollarSign, FiMessageSquare } from "react-icons/fi";
 
@@ -22,92 +21,95 @@ const navItems = [
   { to: "/keluhan", icon: FiMessageSquare, label: "Keluhan & Feedback" },
 ];
 
-
 export default function Sidebar() {
-  return (
-   // Update style div pembungkus utama Sidebar
-<div style={{
-  display: "flex",
-  flexDirection: "column",
-  height: "100vh",
-  width: 220,
-  minWidth: 220,
-  // Hapus position: fixed, left, top, dan zIndex
-  background: "#161a26",
-  borderRight: "1px solid rgba(255,255,255,0.06)",
-  padding: "24px 0",
-  fontFamily: "'DM Sans', sans-serif",
-  overflowY: "auto",
-  scrollbarWidth: "none",
-  position: "sticky", // Gunakan sticky agar tetap diam saat konten di-scroll
-  top: 0,
-}}>
+  const mintColor = "#4FD1C5";
 
-      {/* Brand */}
-      <div style={{ padding: "0 20px 28px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100vh",
+      width: 260, // Sedikit diperlebar agar teks tidak sesak
+      minWidth: 260,
+      background: "#FFFFFF",
+      borderRight: "1px solid #E9ECEF",
+      padding: "32px 0",
+      fontFamily: "'Inter', sans-serif",
+    }}>
+
+      {/* Brand Section */}
+      <div style={{ padding: "0 24px 32px", textAlign: "center" }}>
         <div style={{
-          width: 36, height: 36,
-          background: "linear-gradient(135deg, #1FD4A0, #0FA877)",
-          borderRadius: 10,
+          width: 45, height: 45,
+          background: mintColor,
+          borderRadius: 12,
           display: "flex", alignItems: "center", justifyContent: "center",
-          marginBottom: 10,
+          margin: "0 auto 12px",
+          boxShadow: `0px 4px 10px rgba(79, 209, 197, 0.3)`,
         }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
             <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/>
             <path d="M8 12h8M12 8v8"/>
           </svg>
         </div>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 15, fontWeight: 600, color: "#fff", letterSpacing: "0.02em" }}>
-          Permata
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#2D3748", letterSpacing: "-0.5px" }}>
+          PERMATA <span style={{ color: mintColor }}>DENTAL</span>
         </div>
-        <div style={{ fontSize: 11, color: "#3d4f5e", letterSpacing: "0.06em", textTransform: "uppercase", marginTop: 2 }}>
-          Klinik Gigi Permata
+        <div style={{ fontSize: 10, color: "#A0AEC0", letterSpacing: "1px", textTransform: "uppercase", marginTop: 4, fontWeight: 600 }}>
+          Klinik Gigi Modern
         </div>
       </div>
 
       {/* Navigation */}
-      <div style={{ padding: "20px 12px 8px", flex: 1 }}>
-        <div style={{ fontSize: 10, color: "#3d4f5e", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0 8px", marginBottom: 10 }}>
+      <div style={{ padding: "0 16px", flex: 1 }}>
+        <div style={{ 
+          fontSize: 11, 
+          color: "#A0AEC0", 
+          letterSpacing: "0.8px", 
+          textTransform: "uppercase", 
+          padding: "0 16px", 
+          marginBottom: 12,
+          fontWeight: 700
+        }}>
           Menu Utama
         </div>
+        
         <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
           {navItems.map(({ to, icon: Icon, label }) => (
-            <li key={to} style={{ marginBottom: 2 }}>
+            <li key={to} style={{ marginBottom: 4 }}>
               <NavLink
                 to={to}
                 end={to === "/"}
                 style={({ isActive }) => ({
                   display: "flex",
                   alignItems: "center",
-                  gap: 10,
-                  padding: "9px 12px",
-                  borderRadius: 8,
-                  fontSize: 13,
-                  fontWeight: isActive ? 500 : 400,
-                  color: isActive ? "#1FD4A0" : "#7a8a9a",
-                  background: isActive ? "rgba(31,212,160,0.1)" : "transparent",
-                  border: isActive ? "1px solid rgba(31,212,160,0.15)" : "1px solid transparent",
+                  gap: 12,
+                  padding: "12px 16px",
+                  borderRadius: "15px",
+                  fontSize: "14px",
+                  fontWeight: isActive ? "700" : "600",
+                  color: isActive ? "#2D3748" : "#A0AEC0",
+                  background: isActive ? "#FFFFFF" : "transparent",
+                  boxShadow: isActive ? "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)" : "none",
                   textDecoration: "none",
-                  transition: "all 0.2s",
+                  transition: "all 0.2s ease",
                 })}
-                onMouseEnter={(e) => {
-                  if (!e.currentTarget.classList.contains("active")) {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                    e.currentTarget.style.color = "#c0d0e0";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!e.currentTarget.classList.contains("active")) {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#7a8a9a";
-                  }
-                }}
               >
-                <Icon style={{ fontSize: 14, flexShrink: 0 }} />
-                <span>{label}</span>
-                {/* Active dot */}
-                {to === "/" && (
-                  <span style={{ marginLeft: "auto", display: "none" }} className="active-dot" />
+                {({ isActive }) => (
+                  <>
+                    <div style={{
+                      width: 30, height: 30,
+                      borderRadius: 8,
+                      background: isActive ? mintColor : "#FFFFFF",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: isActive ? "#FFFFFF" : mintColor,
+                      boxShadow: isActive ? "none" : "0px 2px 4px rgba(0,0,0,0.05)",
+                      transition: "all 0.2s ease"
+                    }}>
+                      <Icon style={{ fontSize: 14 }} />
+                    </div>
+                    <span>{label}</span>
+                  </>
                 )}
               </NavLink>
             </li>
@@ -115,48 +117,32 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      {/* Footer */}
-      <div style={{ padding: "16px 12px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        {/* Doctor card */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: 10,
-          padding: "10px 12px",
-          background: "rgba(255,255,255,0.04)",
-          borderRadius: 10,
-          marginBottom: 12,
-        }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: "50%",
-            background: "linear-gradient(135deg, #1FD4A0, #0FA877)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 12, fontWeight: 600, color: "#0f1117", flexShrink: 0,
-          }}>DS</div>
-          <div>
-            <div style={{ fontSize: 12, fontWeight: 500, color: "#c0d0e0" }}>Dr. Sarah</div>
-            <div style={{ fontSize: 10, color: "#4a5a6a" }}>sarah@dentalclinic.com</div>
-          </div>
-        </div>
-
-        {/* Logout */}
+      {/* Footer / User Profile Area */}
+      <div style={{ padding: "20px 16px", borderTop: "1px solid #F7FAFC" }}>
         <NavLink
           to="/login"
           style={{
-            display: "flex", alignItems: "center", gap: 8,
-            padding: "8px 12px", borderRadius: 8,
-            fontSize: 12, color: "#4a5a6a",
+            display: "flex", alignItems: "center", gap: 12,
+            padding: "12px 16px", borderRadius: 12,
+            fontSize: 14, fontWeight: 700, color: "#A0AEC0",
             textDecoration: "none",
             transition: "all 0.2s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#f57272";
-            e.currentTarget.style.background = "rgba(245,57,57,0.06)";
+            e.currentTarget.style.color = "#E53E3E";
+            e.currentTarget.style.background = "#FFF5F5";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#4a5a6a";
+            e.currentTarget.style.color = "#A0AEC0";
             e.currentTarget.style.background = "transparent";
           }}
         >
-          <FaSignOutAlt style={{ fontSize: 13 }} />
+          <div style={{
+            width: 30, height: 30, borderRadius: 8, background: "#F7FAFC",
+            display: "flex", alignItems: "center", justifyContent: "center"
+          }}>
+            <FaSignOutAlt style={{ fontSize: 14 }} />
+          </div>
           <span>Logout</span>
         </NavLink>
       </div>

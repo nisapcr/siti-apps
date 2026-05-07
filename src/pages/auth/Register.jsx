@@ -1,79 +1,122 @@
 import { Link } from "react-router-dom";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
 
+// Definisi Warna Mint Konsisten
+const mintColor = "#4FD1C5";
+
 const inputStyle = {
   width: "100%",
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  borderRadius: 10,
-  padding: "10px 14px 10px 40px",
-  color: "#a0b0c0",
-  fontSize: 13,
+  background: "#F8F9FA",
+  border: "1px solid #E2E8F0",
+  borderRadius: 12,
+  padding: "12px 14px 12px 42px",
+  color: "#2D3748",
+  fontSize: 14,
   outline: "none",
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   boxSizing: "border-box",
-  transition: "border-color 0.2s",
+  transition: "all 0.2s ease",
 };
 
 const labelStyle = {
   display: "block",
-  fontSize: 12,
-  fontWeight: 500,
-  color: "#6a7a8a",
-  marginBottom: 6,
-  letterSpacing: "0.02em",
+  fontSize: 13,
+  fontWeight: 600,
+  color: "#4A5568",
+  marginBottom: 8,
 };
 
 const iconStyle = {
-  position: "absolute", left: 13, top: "50%",
+  position: "absolute", 
+  left: 14, 
+  top: "50%",
   transform: "translateY(-50%)",
-  color: "#4a5a6a", fontSize: 14,
+  color: "#A0AEC0", 
+  fontSize: 16,
 };
 
 export default function Register() {
-  const focusIn  = (e) => (e.target.style.borderColor = "rgba(31,212,160,0.35)");
-  const focusOut = (e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)");
+  const focusIn = (e) => {
+    e.target.style.borderColor = mintColor;
+    e.target.style.background = "#fff";
+    e.target.style.boxShadow = `0 0 0 3px rgba(79, 209, 197, 0.1)`;
+  };
+
+  const focusOut = (e) => {
+    e.target.style.borderColor = "#E2E8F0";
+    e.target.style.background = "#F8F9FA";
+    e.target.style.boxShadow = "none";
+  };
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <h2 style={{ fontSize: 18, fontWeight: 500, color: "#d0dde8", marginBottom: 24, textAlign: "center" }}>
-        Daftar Akun Baru
-      </h2>
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ marginBottom: 32, textAlign: "center" }}>
+        <h3 style={{ fontSize: 22, fontWeight: 700, color: "#2D3748", margin: 0 }}>
+          Daftar Akun Baru
+        </h3>
+        <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 8 }}>
+          Bergabunglah untuk mulai mengelola klinik Anda
+        </p>
+      </div>
 
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         {/* Nama */}
-        <div style={{ marginBottom: 14 }}>
+        <div style={{ marginBottom: 18 }}>
           <label style={labelStyle}>Nama Lengkap</label>
           <div style={{ position: "relative" }}>
             <FiUser style={iconStyle} />
-            <input type="text" placeholder="Masukkan nama lengkap" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
+            <input 
+              type="text" 
+              placeholder="Masukkan nama lengkap" 
+              style={inputStyle} 
+              onFocus={focusIn} 
+              onBlur={focusOut} 
+            />
           </div>
         </div>
 
         {/* Email */}
-        <div style={{ marginBottom: 14 }}>
+        <div style={{ marginBottom: 18 }}>
           <label style={labelStyle}>Email</label>
           <div style={{ position: "relative" }}>
             <FiMail style={iconStyle} />
-            <input type="email" placeholder="you@example.com" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
+            <input 
+              type="email" 
+              placeholder="you@example.com" 
+              style={inputStyle} 
+              onFocus={focusIn} 
+              onBlur={focusOut} 
+            />
           </div>
         </div>
 
         {/* Password */}
-        <div style={{ marginBottom: 14 }}>
+        <div style={{ marginBottom: 18 }}>
           <label style={labelStyle}>Password</label>
           <div style={{ position: "relative" }}>
             <FiLock style={iconStyle} />
-            <input type="password" placeholder="••••••••" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
+            <input 
+              type="password" 
+              placeholder="••••••••" 
+              style={inputStyle} 
+              onFocus={focusIn} 
+              onBlur={focusOut} 
+            />
           </div>
         </div>
 
         {/* Konfirmasi */}
-        <div style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: 28 }}>
           <label style={labelStyle}>Konfirmasi Password</label>
           <div style={{ position: "relative" }}>
             <FiLock style={iconStyle} />
-            <input type="password" placeholder="••••••••" style={inputStyle} onFocus={focusIn} onBlur={focusOut} />
+            <input 
+              type="password" 
+              placeholder="••••••••" 
+              style={inputStyle} 
+              onFocus={focusIn} 
+              onBlur={focusOut} 
+            />
           </div>
         </div>
 
@@ -81,31 +124,33 @@ export default function Register() {
           type="submit"
           style={{
             width: "100%",
-            background: "linear-gradient(135deg, #1FD4A0, #0FA877)",
-            color: "#0f1117",
+            background: mintColor,
+            color: "#FFFFFF",
             fontWeight: 700,
-            fontSize: 14,
-            padding: "11px",
-            borderRadius: 10,
+            fontSize: 15,
+            padding: "13px",
+            borderRadius: 14,
             border: "none",
             cursor: "pointer",
-            fontFamily: "'DM Sans', sans-serif",
-            letterSpacing: "0.02em",
-            transition: "opacity 0.2s",
+            fontFamily: "'Inter', sans-serif",
+            transition: "all 0.2s ease",
+            boxShadow: `0px 4px 12px rgba(79, 209, 197, 0.3)`,
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
         >
-          Daftar
+          Daftar Sekarang
         </button>
       </form>
 
-      <p style={{ textAlign: "center", fontSize: 13, color: "#4a5a6a", marginTop: 20 }}>
+      <p style={{ textAlign: "center", fontSize: 14, color: "#718096", marginTop: 24 }}>
         Sudah punya akun?{" "}
-        <Link to="/login" style={{ color: "#1FD4A0", textDecoration: "none" }}
+        <Link to="/login" style={{ color: mintColor, textDecoration: "none", fontWeight: 600 }}
           onMouseEnter={(e) => (e.target.style.textDecoration = "underline")}
           onMouseLeave={(e) => (e.target.style.textDecoration = "none")}
-        >Masuk</Link>
+        >
+          Masuk di sini
+        </Link>
       </p>
     </div>
   );

@@ -7,20 +7,33 @@ export default function MainLayout() {
     <div style={{
       display: "flex",
       minHeight: "100vh",
-      background: "#0f1117",   /* ← ini yang penting */
-      color: "#e8e8e8",
-      fontFamily: "'DM Sans', sans-serif",
+      background: "#F8F9FA", // Mengganti dark mode ke light mode yang bersih
+      color: "#2D3748",      // Warna teks utama Navy Tua
+      fontFamily: "'Inter', sans-serif",
     }}>
+      {/* Sidebar tetap di sisi kiri */}
       <Sidebar />
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+
+      <div style={{ 
+        flex: 1, 
+        display: "flex", 
+        flexDirection: "column", 
+        overflow: "hidden" 
+      }}>
+        {/* Header di bagian atas */}
         <Header />
+
+        {/* Area Konten Utama */}
         <main style={{
           flex: 1,
           overflowY: "auto",
-          padding: "24px 28px",
-          background: "#0f1117",   /* ← pastikan main juga dark */
+          padding: "32px 32px",
+          background: "#F8F9FA", // Pastikan background main konsisten dengan kontainer
         }}>
-          <Outlet />
+          {/* Outlet akan merender halaman seperti Dashboard, Data Pasien, dll */}
+          <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>
