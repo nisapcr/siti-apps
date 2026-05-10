@@ -25,123 +25,107 @@ export default function Sidebar() {
   const mintColor = "#4FD1C5";
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh",
-      width: 260, // Sedikit diperlebar agar teks tidak sesak
-      minWidth: 260,
-      background: "#FFFFFF",
-      borderRight: "1px solid #E9ECEF",
-      padding: "32px 0",
-      fontFamily: "'Inter', sans-serif",
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100vh",
+        width: 250,
+        minWidth: 250,
+        background: "#FFFFFF",
+        borderRight: "1px solid #E2E8F0",
+        padding: "16px 0",
 
-      {/* Brand Section */}
-      <div style={{ padding: "0 24px 32px", textAlign: "center" }}>
-        <div style={{
-          width: 45, height: 45,
-          background: mintColor,
-          borderRadius: 12,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          margin: "0 auto 12px",
-          boxShadow: `0px 4px 10px rgba(79, 209, 197, 0.3)`,
-        }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/>
-            <path d="M8 12h8M12 8v8"/>
-          </svg>
+        // FIX: KUNCI SIDEBAR AGAR TIDAK GERAK
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: 1000,
+
+        // FIX: HILANGKAN SCROLL DI SIDEBAR
+        overflow: "hidden",
+        boxSizing: "border-box",
+
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
+      {/* TOP SECTION */}
+      <div>
+        <div style={{ padding: "0 20px 20px", textAlign: "center" }}>
+          <div style={{
+            width: 44, height: 44, background: mintColor, borderRadius: 14,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            margin: "0 auto 10px", boxShadow: "0 6px 18px rgba(79,209,197,0.25)",
+          }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2" />
+              <path d="M8 12h8M12 8v8" />
+            </svg>
+          </div>
+          <div style={{ fontSize: 17, fontWeight: 800, color: "#2D3748" }}>
+            PERMATA <span style={{ color: mintColor }}>DENTAL</span>
+          </div>
+          <div style={{ fontSize: 9, color: "#A0AEC0", marginTop: 4, textTransform: "uppercase", letterSpacing: 1, fontWeight: 700 }}>
+            Klinik Gigi Modern
+          </div>
         </div>
-        <div style={{ fontSize: 18, fontWeight: 700, color: "#2D3748", letterSpacing: "-0.5px" }}>
-          PERMATA <span style={{ color: mintColor }}>DENTAL</span>
-        </div>
-        <div style={{ fontSize: 10, color: "#A0AEC0", letterSpacing: "1px", textTransform: "uppercase", marginTop: 4, fontWeight: 600 }}>
-          Klinik Gigi Modern
+
+        <div style={{ padding: "0 14px" }}>
+          <div style={{ fontSize: 10, color: "#A0AEC0", padding: "0 12px", marginBottom: 10, textTransform: "uppercase", fontWeight: 700, letterSpacing: "0.8px" }}>
+            Menu Utama
+          </div>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {navItems.map(({ to, icon: Icon, label }) => (
+              <li key={to} style={{ marginBottom: 4 }}>
+                <NavLink
+                  to={to}
+                  end={to === "/"}
+                  style={({ isActive }) => ({
+                    display: "flex", alignItems: "center", gap: 10, padding: "8px 14px", borderRadius: 12,
+                    textDecoration: "none", fontSize: 12, fontWeight: isActive ? 700 : 600,
+                    background: isActive ? "rgba(79,209,197,0.12)" : "transparent",
+                    color: isActive ? "#2D3748" : "#718096",
+                    transition: "0.2s ease",
+                  })}
+                >
+                  {({ isActive }) => (
+                    <>
+                      <div style={{
+                        width: 28, height: 28, borderRadius: 8,
+                        background: isActive ? mintColor : "#F7FAFC",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        color: isActive ? "#FFFFFF" : mintColor, flexShrink: 0,
+                      }}>
+                        <Icon style={{ fontSize: 13 }} />
+                      </div>
+                      <span>{label}</span>
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Navigation */}
-      <div style={{ padding: "0 16px", flex: 1 }}>
-        <div style={{ 
-          fontSize: 11, 
-          color: "#A0AEC0", 
-          letterSpacing: "0.8px", 
-          textTransform: "uppercase", 
-          padding: "0 16px", 
-          marginBottom: 12,
-          fontWeight: 700
-        }}>
-          Menu Utama
-        </div>
-        
-        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {navItems.map(({ to, icon: Icon, label }) => (
-            <li key={to} style={{ marginBottom: 4 }}>
-              <NavLink
-                to={to}
-                end={to === "/"}
-                style={({ isActive }) => ({
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  padding: "12px 16px",
-                  borderRadius: "15px",
-                  fontSize: "14px",
-                  fontWeight: isActive ? "700" : "600",
-                  color: isActive ? "#2D3748" : "#A0AEC0",
-                  background: isActive ? "#FFFFFF" : "transparent",
-                  boxShadow: isActive ? "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)" : "none",
-                  textDecoration: "none",
-                  transition: "all 0.2s ease",
-                })}
-              >
-                {({ isActive }) => (
-                  <>
-                    <div style={{
-                      width: 30, height: 30,
-                      borderRadius: 8,
-                      background: isActive ? mintColor : "#FFFFFF",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      color: isActive ? "#FFFFFF" : mintColor,
-                      boxShadow: isActive ? "none" : "0px 2px 4px rgba(0,0,0,0.05)",
-                      transition: "all 0.2s ease"
-                    }}>
-                      <Icon style={{ fontSize: 14 }} />
-                    </div>
-                    <span>{label}</span>
-                  </>
-                )}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Footer / User Profile Area */}
-      <div style={{ padding: "20px 16px", borderTop: "1px solid #F7FAFC" }}>
-        <NavLink
-          to="/login"
-          style={{
-            display: "flex", alignItems: "center", gap: 12,
-            padding: "12px 16px", borderRadius: 12,
-            fontSize: 14, fontWeight: 700, color: "#A0AEC0",
-            textDecoration: "none",
-            transition: "all 0.2s",
-          }}
+      {/* FOOTER */}
+      <div style={{ padding: "14px", borderTop: "1px solid #EDF2F7" }}>
+        <NavLink to="/login" style={{
+          display: "flex", alignItems: "center", gap: 10, padding: "8px 14px", borderRadius: 12,
+          textDecoration: "none", color: "#718096", fontSize: 12, fontWeight: 700, transition: "0.2s",
+        }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#E53E3E";
             e.currentTarget.style.background = "#FFF5F5";
+            e.currentTarget.style.color = "#E53E3E";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#A0AEC0";
             e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "#718096";
           }}
         >
-          <div style={{
-            width: 30, height: 30, borderRadius: 8, background: "#F7FAFC",
-            display: "flex", alignItems: "center", justifyContent: "center"
-          }}>
-            <FaSignOutAlt style={{ fontSize: 14 }} />
+          <div style={{ width: 28, height: 28, borderRadius: 8, background: "#F7FAFC", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <FaSignOutAlt style={{ fontSize: 13 }} />
           </div>
           <span>Logout</span>
         </NavLink>

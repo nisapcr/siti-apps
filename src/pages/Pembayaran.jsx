@@ -1,113 +1,156 @@
 import { useState } from "react";
-import { FiCheckCircle, FiClock, FiPrinter, FiX, FiDownload } from "react-icons/fi";
-// Pastikan path ini benar sesuai struktur foldermu
+import {
+  FiCheckCircle,
+  FiClock,
+  FiPrinter,
+  FiX,
+  FiDollarSign,
+  FiFileText,
+} from "react-icons/fi";
+
 import transaksiData from "../data/transaksi.json";
 
 const formatTanggal = (tanggal) => {
-  return new Date(tanggal).toLocaleDateString("id-ID", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  return new Date(tanggal).toLocaleDateString(
+    "id-ID",
+    {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }
+  );
 };
 
-// ── Kwitansi Modal ──────────────────────────────────────────────────────────
-function KwitansiModal({ transaksi, onClose }) {
-  const lunas = transaksi.statusPembayaran === "Lunas";
+/* =========================
+   MODAL KWITANSI
+========================= */
+function KwitansiModal({
+  transaksi,
+  onClose,
+}) {
+  const lunas =
+    transaksi.statusPembayaran ===
+    "Lunas";
 
   const handlePrint = () => {
-    const printWindow = window.open("", "_blank", "width=700,height=900");
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8" />
-        <title>Kwitansi ${transaksi.noKwitansi}</title>
-        <style>
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { font-family: 'Segoe UI', sans-serif; background: #fff; color: #1a1a2e; padding: 40px; }
-          .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #1FD4A0; }
-          .clinic-name { font-size: 22px; font-weight: 700; color: #0f1117; }
-          .clinic-sub { font-size: 12px; color: #6b7280; margin-top: 4px; }
-          .badge { background: ${lunas ? "#d1fae5" : "#fef3c7"}; color: ${lunas ? "#065f46" : "#92400e"}; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-          .title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-          .title { font-size: 18px; font-weight: 700; color: #1a1a2e; }
-          .no-kwitansi { font-size: 13px; color: #6b7280; font-family: monospace; }
-          .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-bottom: 28px; }
-          .info-item label { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
-          .info-item span { font-size: 14px; color: #1a1a2e; font-weight: 500; }
-          .total-row { display: flex; justify-content: space-between; align-items: center; background: #f9fafb; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; }
-          .total-label { font-size: 14px; color: #6b7280; }
-          .total-value { font-size: 22px; font-weight: 700; color: #059669; }
-          .footer { text-align: center; font-size: 11px; color: #9ca3af; border-top: 1px solid #e5e7eb; padding-top: 16px; }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <div><div class="clinic-name">🦷 Klinik Gigi</div><div class="clinic-sub">Pelayanan Kesehatan Gigi Terpercaya</div></div>
-          <span class="badge">${transaksi.statusPembayaran}</span>
-        </div>
-        <div class="title-row"><span class="title">Kwitansi Pembayaran</span><span class="no-kwitansi">${transaksi.noKwitansi}</span></div>
-        <div class="info-grid">
-          <div class="info-item"><label>Nama Pasien</label><span>${transaksi.pasienNama}</span></div>
-          <div class="info-item"><label>Tanggal</label><span>${formatTanggal(transaksi.tanggal)}</span></div>
-          <div class="info-item"><label>Tindakan</label><span>${transaksi.tindakan}</span></div>
-          <div class="info-item"><label>Metode Bayar</label><span>${transaksi.metodePembayaran || "Tunai"}</span></div>
-        </div>
-        <hr style="border:none; border-top:1px solid #e5e7eb; margin: 20px 0;" />
-        <div class="total-row">
-          <div class="total-label">Total Pembayaran</div>
-          <div class="total-value">Rp${transaksi.biaya.toLocaleString("id-ID")}</div>
-        </div>
-        <div class="footer">Terima kasih telah mempercayakan kesehatan gigi Anda kepada <strong>Klinik Gigi</strong></div>
-      </body>
-      </html>`
-    );
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => { printWindow.print(); }, 300);
+    window.print();
   };
 
   return (
-    <div
-      style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      <div style={{ background: "#161a26", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 18, width: "100%", maxWidth: 480, overflow: "hidden" }}>
-        <div style={{ padding: "18px 22px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <div style={overlay}>
+      <div style={modalCard}>
+        {/* HEADER */}
+        <div style={modalHeader}>
           <div>
-            <div style={{ fontSize: 15, fontWeight: 600, color: "#d0dde8" }}>Preview Kwitansi</div>
-            <div style={{ fontSize: 11, color: "#4a5a6a", marginTop: 2 }}>{transaksi.noKwitansi}</div>
+            <h2 style={modalTitle}>
+              Preview Kwitansi
+            </h2>
+
+            <p style={modalSub}>
+              {
+                transaksi.noKwitansi
+              }
+            </p>
           </div>
-          <button onClick={onClose} style={{ background: "rgba(255,255,255,0.05)", border: "none", borderRadius: 8, cursor: "pointer", color: "#6a7a8a", padding: 5 }}>
-            <FiX size={18} />
+
+          <button
+            onClick={onClose}
+            style={closeBtn}
+          >
+            <FiX />
           </button>
         </div>
 
-        <div style={{ padding: "22px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: 20 }}>
-            {[
-              { label: "Nama Pasien", value: transaksi.pasienNama },
-              { label: "Tindakan", value: transaksi.tindakan },
-              { label: "Tanggal", value: formatTanggal(transaksi.tanggal) },
-              { label: "Status", value: transaksi.statusPembayaran },
-            ].map((item) => (
-              <div key={item.label}>
-                <div style={{ fontSize: 10, color: "#4a5a6a", textTransform: "uppercase", marginBottom: 4 }}>{item.label}</div>
-                <div style={{ fontSize: 13, color: "#d0dde8", fontWeight: 500 }}>{item.value}</div>
-              </div>
-            ))}
+        {/* BODY */}
+        <div style={modalBody}>
+          <div style={infoGrid}>
+            <div>
+              <p style={infoLabel}>
+                Nama Pasien
+              </p>
+
+              <p style={infoValue}>
+                {
+                  transaksi.pasienNama
+                }
+              </p>
+            </div>
+
+            <div>
+              <p style={infoLabel}>
+                Tindakan
+              </p>
+
+              <p style={infoValue}>
+                {
+                  transaksi.tindakan
+                }
+              </p>
+            </div>
+
+            <div>
+              <p style={infoLabel}>
+                Tanggal
+              </p>
+
+              <p style={infoValue}>
+                {formatTanggal(
+                  transaksi.tanggal
+                )}
+              </p>
+            </div>
+
+            <div>
+              <p style={infoLabel}>
+                Status
+              </p>
+
+              <p
+                style={{
+                  ...infoValue,
+                  color: lunas
+                    ? "#38B2AC"
+                    : "#DD6B20",
+                }}
+              >
+                {
+                  transaksi.statusPembayaran
+                }
+              </p>
+            </div>
           </div>
 
-          <div style={{ background: "rgba(31,212,160,0.06)", border: "1px solid rgba(31,212,160,0.15)", borderRadius: 10, padding: "14px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-            <div style={{ fontSize: 12, color: "#6a7a8a" }}>Total Tagihan</div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: "#1FD4A0" }}>Rp{transaksi.biaya.toLocaleString("id-ID")}</div>
+          {/* TOTAL */}
+          <div style={totalCard}>
+            <div>
+              <p style={totalLabel}>
+                Total Pembayaran
+              </p>
+
+              <h2 style={totalValue}>
+                Rp
+                {transaksi.biaya.toLocaleString(
+                  "id-ID"
+                )}
+              </h2>
+            </div>
           </div>
 
-          <div style={{ display: "flex", gap: 10 }}>
-            <button onClick={onClose} style={{ flex: 1, padding: "12px", borderRadius: 10, background: "transparent", border: "1px solid rgba(255,255,255,0.1)", color: "#6a7a8a", cursor: "pointer" }}>Batal</button>
-            <button onClick={handlePrint} style={{ flex: 2, background: "#1FD4A0", color: "#0f1117", border: "none", borderRadius: 10, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-              <FiPrinter size={14} /> Cetak Kwitansi
+          {/* BUTTON */}
+          <div style={modalBtnWrap}>
+            <button
+              onClick={onClose}
+              style={cancelBtn}
+            >
+              Batal
+            </button>
+
+            <button
+              onClick={handlePrint}
+              style={printBtn}
+            >
+              <FiPrinter />
+              Cetak
             </button>
           </div>
         </div>
@@ -116,83 +159,259 @@ function KwitansiModal({ transaksi, onClose }) {
   );
 }
 
-// ── Main Page ───────────────────────────────────────────────────────────────
+/* =========================
+   PAGE
+========================= */
 export default function Pembayaran() {
-  const [selectedTransaksi, setSelectedTransaksi] = useState(null);
+  const [
+    selectedTransaksi,
+    setSelectedTransaksi,
+  ] = useState(null);
 
-  const totalPendapatan = transaksiData.reduce((sum, t) => sum + t.biaya, 0);
-  const totalLunas = transaksiData.filter((t) => t.statusPembayaran === "Lunas").length;
-  const totalCicil = transaksiData.filter((t) => t.statusPembayaran === "Cicil").length;
+  const totalPendapatan =
+    transaksiData.reduce(
+      (sum, t) => sum + t.biaya,
+      0
+    );
+
+  const totalLunas =
+    transaksiData.filter(
+      (t) =>
+        t.statusPembayaran ===
+        "Lunas"
+    ).length;
+
+  const totalCicil =
+    transaksiData.filter(
+      (t) =>
+        t.statusPembayaran ===
+        "Cicil"
+    ).length;
 
   const stats = [
-    { label: "Total Pendapatan", value: `Rp${(totalPendapatan / 1000000).toFixed(1)}jt`, color: "#1FD4A0" },
-    { label: "Transaksi Lunas", value: totalLunas, color: "#4A9EF5" },
-    { label: "Transaksi Cicil", value: totalCicil, color: "#F5A623" },
-    { label: "Total Invoice", value: transaksiData.length, color: "#8B5CF6" },
+    {
+      label: "Total Pendapatan",
+      value: `Rp${(
+        totalPendapatan /
+        1000000
+      ).toFixed(1)}jt`,
+      color: "#4FD1C5",
+      icon: <FiDollarSign />,
+    },
+
+    {
+      label: "Transaksi Lunas",
+      value: totalLunas,
+      color: "#4299E1",
+      icon: <FiCheckCircle />,
+    },
+
+    {
+      label: "Transaksi Cicil",
+      value: totalCicil,
+      color: "#F6AD55",
+      icon: <FiClock />,
+    },
+
+    {
+      label: "Total Invoice",
+      value: transaksiData.length,
+      color: "#9F7AEA",
+      icon: <FiFileText />,
+    },
   ];
 
   return (
-    <div style={{ padding: "24px", color: "#fff" }}>
+    <div style={container}>
       {selectedTransaksi && (
-        <KwitansiModal transaksi={selectedTransaksi} onClose={() => setSelectedTransaksi(null)} />
+        <KwitansiModal
+          transaksi={
+            selectedTransaksi
+          }
+          onClose={() =>
+            setSelectedTransaksi(
+              null
+            )
+          }
+        />
       )}
 
-      <div style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>💰 Manajemen Pembayaran</h1>
-        <p style={{ color: "#4a5a6a", fontSize: 14 }}>Pantau arus kas dan cetak kwitansi pasien</p>
+      {/* HEADER */}
+      <div style={header}>
+        <p style={breadcrumb}>
+        </p>
+
+        <h1 style={title}>
+          Manajemen Pembayaran
+        </h1>
+
+        <p style={subtitle}>
+          Pantau transaksi dan
+          cetak kwitansi pasien
+        </p>
       </div>
 
-      {/* Grid Stats (Diperbaiki agar pas 4 kolom) */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 32 }}>
+      {/* STATS */}
+      <div style={statsGrid}>
         {stats.map((s, i) => (
-          <div key={i} style={{ background: "#161a26", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 16, padding: "20px", position: "relative" }}>
-            <div style={{ position: "absolute", top: 0, left: 0, width: "4px", height: "100%", background: s.color, borderRadius: "16px 0 0 16px" }} />
-            <div style={{ fontSize: 11, color: "#4a5a6a", textTransform: "uppercase", fontWeight: 600, marginBottom: 8 }}>{s.label}</div>
-            <div style={{ fontSize: 28, fontWeight: 700, color: s.color }}>{s.value}</div>
+          <div
+            key={i}
+            style={statsCard}
+          >
+            <div
+              style={{
+                ...statsIcon,
+                background:
+                  s.color,
+              }}
+            >
+              {s.icon}
+            </div>
+
+            <div>
+              <p style={statsLabel}>
+                {s.label}
+              </p>
+
+              <h2
+                style={{
+                  ...statsValue,
+                  color: s.color,
+                }}
+              >
+                {s.value}
+              </h2>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Tabel */}
-      <div style={{ background: "#161a26", borderRadius: 16, border: "1px solid rgba(255,255,255,0.06)", overflow: "hidden" }}>
-        <div style={{ padding: "20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <h3 style={{ margin: 0, fontSize: 16 }}>Riwayat Transaksi Terkini</h3>
+      {/* TABLE */}
+      <div style={tableCard}>
+        <div style={tableHeader}>
+          <div>
+            <h2 style={tableTitle}>
+              Riwayat Transaksi
+            </h2>
+
+            <p style={tableSub}>
+              Data pembayaran
+              pasien terbaru
+            </p>
+          </div>
         </div>
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+
+        <div
+          style={{
+            overflowX: "auto",
+          }}
+        >
+          <table style={table}>
             <thead>
-              <tr style={{ textAlign: "left", background: "rgba(255,255,255,0.02)" }}>
-                {["Kwitansi", "Pasien", "Tindakan", "Biaya", "Status", "Aksi"].map(h => (
-                  <th key={h} style={{ padding: "14px 20px", fontSize: 11, color: "#4a5a6a", textTransform: "uppercase" }}>{h}</th>
+              <tr>
+                {[
+                  "Kwitansi",
+                  "Pasien",
+                  "Tindakan",
+                  "Biaya",
+                  "Status",
+                  "Aksi",
+                ].map((h) => (
+                  <th
+                    key={h}
+                    style={th}
+                  >
+                    {h}
+                  </th>
                 ))}
               </tr>
             </thead>
+
             <tbody>
-              {transaksiData.map((t) => (
-                <tr key={t.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
-                  <td style={{ padding: "16px 20px", fontSize: 13, color: "#6a7a8a", fontFamily: "monospace" }}>{t.noKwitansi}</td>
-                  <td style={{ padding: "16px 20px", fontSize: 14, fontWeight: 500 }}>{t.pasienNama}</td>
-                  <td style={{ padding: "16px 20px", fontSize: 14, color: "#a0b0c0" }}>{t.tindakan}</td>
-                  <td style={{ padding: "16px 20px", fontSize: 14, fontWeight: 700, color: "#1FD4A0" }}>Rp{t.biaya.toLocaleString()}</td>
-                  <td style={{ padding: "16px 20px" }}>
-                    <span style={{ 
-                      padding: "4px 12px", borderRadius: 20, fontSize: 11, fontWeight: 600,
-                      background: t.statusPembayaran === "Lunas" ? "rgba(31,212,160,0.1)" : "rgba(245,166,35,0.1)",
-                      color: t.statusPembayaran === "Lunas" ? "#1FD4A0" : "#F5A623"
-                    }}>
-                      {t.statusPembayaran}
-                    </span>
-                  </td>
-                  <td style={{ padding: "16px 20px" }}>
-                    <button 
-                      onClick={() => setSelectedTransaksi(t)}
-                      style={{ background: "#1FD4A0", color: "#0f1117", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: "pointer" }}
-                    >
-                      Cetak
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {transaksiData.map(
+                (t) => (
+                  <tr
+                    key={t.id}
+                    style={tr}
+                  >
+                    <td style={td}>
+                      <span
+                        style={
+                          invoiceText
+                        }
+                      >
+                        {
+                          t.noKwitansi
+                        }
+                      </span>
+                    </td>
+
+                    <td style={td}>
+                      <strong>
+                        {
+                          t.pasienNama
+                        }
+                      </strong>
+                    </td>
+
+                    <td style={td}>
+                      {
+                        t.tindakan
+                      }
+                    </td>
+
+                    <td style={td}>
+                      <span
+                        style={
+                          biayaText
+                        }
+                      >
+                        Rp
+                        {t.biaya.toLocaleString()}
+                      </span>
+                    </td>
+
+                    <td style={td}>
+                      <span
+                        style={{
+                          ...statusBadge,
+                          background:
+                            t.statusPembayaran ===
+                            "Lunas"
+                              ? "#E6FFFA"
+                              : "#FFF7ED",
+
+                          color:
+                            t.statusPembayaran ===
+                            "Lunas"
+                              ? "#38B2AC"
+                              : "#DD6B20",
+                        }}
+                      >
+                        {
+                          t.statusPembayaran
+                        }
+                      </span>
+                    </td>
+
+                    <td style={td}>
+                      <button
+                        onClick={() =>
+                          setSelectedTransaksi(
+                            t
+                          )
+                        }
+                        style={
+                          cetakBtn
+                        }
+                      >
+                        <FiPrinter />
+                        Cetak
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </table>
         </div>
@@ -200,3 +419,285 @@ export default function Pembayaran() {
     </div>
   );
 }
+
+/* =========================
+   STYLES
+========================= */
+
+const container = {
+  minHeight: "100vh",
+  background: "#f4f7fe",
+  padding: 30,
+  fontFamily:
+    "'DM Sans', sans-serif",
+};
+
+const header = {
+  marginBottom: 28,
+};
+
+const breadcrumb = {
+  color: "#A0AEC0",
+  fontSize: 14,
+  marginBottom: 6,
+};
+
+const title = {
+  fontSize: 30,
+  margin: 0,
+  color: "#2D3748",
+};
+
+const subtitle = {
+  color: "#A0AEC0",
+  marginTop: 8,
+};
+
+const statsGrid = {
+  display: "grid",
+  gridTemplateColumns:
+    "repeat(auto-fit,minmax(220px,1fr))",
+  gap: 18,
+  marginBottom: 28,
+};
+
+const statsCard = {
+  background: "#ffffff",
+  borderRadius: 24,
+  padding: 24,
+  display: "flex",
+  alignItems: "center",
+  gap: 16,
+  boxShadow:
+    "0 4px 20px rgba(0,0,0,0.03)",
+};
+
+const statsIcon = {
+  width: 52,
+  height: 52,
+  borderRadius: 16,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  color: "#ffffff",
+  fontSize: 20,
+};
+
+const statsLabel = {
+  color: "#A0AEC0",
+  fontSize: 14,
+  marginBottom: 4,
+};
+
+const statsValue = {
+  fontSize: 28,
+  fontWeight: 700,
+  margin: 0,
+};
+
+const tableCard = {
+  background: "#ffffff",
+  borderRadius: 24,
+  padding: 24,
+  boxShadow:
+    "0 4px 20px rgba(0,0,0,0.03)",
+};
+
+const tableHeader = {
+  marginBottom: 20,
+};
+
+const tableTitle = {
+  margin: 0,
+  color: "#2D3748",
+};
+
+const tableSub = {
+  marginTop: 4,
+  color: "#A0AEC0",
+  fontSize: 14,
+};
+
+const table = {
+  width: "100%",
+  borderCollapse: "collapse",
+};
+
+const th = {
+  textAlign: "left",
+  padding: 16,
+  fontSize: 12,
+  color: "#A0AEC0",
+  textTransform: "uppercase",
+  borderBottom:
+    "1px solid #EDF2F7",
+};
+
+const tr = {
+  borderBottom:
+    "1px solid #EDF2F7",
+};
+
+const td = {
+  padding: 16,
+  color: "#4A5568",
+  fontSize: 14,
+};
+
+const invoiceText = {
+  color: "#718096",
+  fontFamily: "monospace",
+};
+
+const biayaText = {
+  color: "#38B2AC",
+  fontWeight: 700,
+};
+
+const statusBadge = {
+  padding: "6px 14px",
+  borderRadius: 30,
+  fontSize: 12,
+  fontWeight: 600,
+};
+
+const cetakBtn = {
+  border: "none",
+  background:
+    "linear-gradient(135deg,#4FD1C5,#38B2AC)",
+  color: "#ffffff",
+  padding: "10px 16px",
+  borderRadius: 12,
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  gap: 8,
+  fontWeight: 600,
+};
+
+/* MODAL */
+
+const overlay = {
+  position: "fixed",
+  inset: 0,
+  background:
+    "rgba(0,0,0,0.4)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 999,
+  backdropFilter: "blur(4px)",
+};
+
+const modalCard = {
+  width: "100%",
+  maxWidth: 520,
+  background: "#ffffff",
+  borderRadius: 24,
+  overflow: "hidden",
+  boxShadow:
+    "0 10px 40px rgba(0,0,0,0.15)",
+};
+
+const modalHeader = {
+  padding: 24,
+  borderBottom:
+    "1px solid #EDF2F7",
+  display: "flex",
+  alignItems: "center",
+  justifyContent:
+    "space-between",
+};
+
+const modalTitle = {
+  margin: 0,
+  color: "#2D3748",
+};
+
+const modalSub = {
+  color: "#A0AEC0",
+  fontSize: 13,
+  marginTop: 4,
+};
+
+const closeBtn = {
+  width: 38,
+  height: 38,
+  borderRadius: 12,
+  border: "none",
+  background: "#f4f7fe",
+  cursor: "pointer",
+};
+
+const modalBody = {
+  padding: 24,
+};
+
+const infoGrid = {
+  display: "grid",
+  gridTemplateColumns:
+    "1fr 1fr",
+  gap: 18,
+  marginBottom: 24,
+};
+
+const infoLabel = {
+  fontSize: 12,
+  color: "#A0AEC0",
+  marginBottom: 6,
+};
+
+const infoValue = {
+  fontSize: 14,
+  fontWeight: 600,
+  color: "#2D3748",
+};
+
+const totalCard = {
+  background:
+    "linear-gradient(135deg,#E6FFFA,#F0FFF4)",
+  borderRadius: 20,
+  padding: 22,
+  marginBottom: 24,
+};
+
+const totalLabel = {
+  color: "#718096",
+  marginBottom: 8,
+};
+
+const totalValue = {
+  margin: 0,
+  color: "#38B2AC",
+};
+
+const modalBtnWrap = {
+  display: "flex",
+  gap: 12,
+};
+
+const cancelBtn = {
+  flex: 1,
+  padding: 14,
+  borderRadius: 14,
+  border: "1px solid #E2E8F0",
+  background: "#ffffff",
+  cursor: "pointer",
+  fontWeight: 600,
+};
+
+const printBtn = {
+  flex: 2,
+  padding: 14,
+  borderRadius: 14,
+  border: "none",
+  background:
+    "linear-gradient(135deg,#4FD1C5,#38B2AC)",
+  color: "#ffffff",
+  cursor: "pointer",
+  fontWeight: 600,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 8,
+};

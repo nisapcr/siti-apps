@@ -7,30 +7,39 @@ export default function MainLayout() {
     <div style={{
       display: "flex",
       minHeight: "100vh",
-      background: "#F8F9FA", // Mengganti dark mode ke light mode yang bersih
-      color: "#2D3748",      // Warna teks utama Navy Tua
+      background: "#F8F9FA", 
+      color: "#2D3748",      
       fontFamily: "'Inter', sans-serif",
     }}>
-      {/* Sidebar tetap di sisi kiri */}
+      {/* 1. SIDEBAR (Fixed di kiri - Lebar 250px) */}
       <Sidebar />
 
+      {/* 2. WRAPPER KONTEN (Harus geser ke kanan sebesar lebar sidebar) */}
       <div style={{ 
         flex: 1, 
+        marginLeft: 250, // PENTING: Harus sama dengan lebar Sidebar kamu!
         display: "flex", 
         flexDirection: "column", 
-        overflow: "hidden" 
+        minHeight: "100vh",
       }}>
-        {/* Header di bagian atas */}
-        <Header />
+        
+        {/* Header - Jika ingin Header nempel di atas saat scroll, gunakan position sticky */}
+        <div style={{ 
+          position: "sticky", 
+          top: 0, 
+          zIndex: 900, 
+          background: "#F8F9FA" 
+        }}>
+          <Header />
+        </div>
 
         {/* Area Konten Utama */}
         <main style={{
           flex: 1,
-          overflowY: "auto",
-          padding: "32px 32px",
-          background: "#F8F9FA", // Pastikan background main konsisten dengan kontainer
+          padding: "32px",
+          background: "#F8F9FA",
         }}>
-          {/* Outlet akan merender halaman seperti Dashboard, Data Pasien, dll */}
+          {/* Pembungkus Outlet agar konten tidak terlalu lebar di monitor besar */}
           <div style={{ maxWidth: "1600px", margin: "0 auto" }}>
             <Outlet />
           </div>
