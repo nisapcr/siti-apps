@@ -67,7 +67,7 @@ export default function Sidebar() {
             PERMATA <span style={{ color: mintColor }}>DENTAL</span>
           </div>
           <div style={{ fontSize: 9, color: "#A0AEC0", marginTop: 4, textTransform: "uppercase", letterSpacing: 1, fontWeight: 700 }}>
-            Klinik Gigi Modern
+            Klinik Gigi Modern Sejahtera
           </div>
         </div>
 
