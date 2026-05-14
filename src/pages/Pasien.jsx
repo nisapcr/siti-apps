@@ -1,10 +1,13 @@
 import { useState } from "react";
+
 import {
   FiPlus,
   FiSearch,
   FiTrash2,
   FiEye,
 } from "react-icons/fi";
+
+import { Link } from "react-router-dom";
 
 import pasienData from "../data/pasien.json";
 
@@ -109,6 +112,7 @@ function TambahPasienModal({ onClose, onSave }) {
           </div>
 
           <div style={grid2}>
+
             <div style={formGroup}>
               <label style={labelStyle}>
                 Jenis Kelamin
@@ -116,9 +120,7 @@ function TambahPasienModal({ onClose, onSave }) {
 
               <select
                 name="jenisKelamin"
-                value={
-                  form.jenisKelamin
-                }
+                value={form.jenisKelamin}
                 onChange={handleChange}
                 style={inputStyle}
               >
@@ -134,19 +136,17 @@ function TambahPasienModal({ onClose, onSave }) {
 
             <div style={formGroup}>
               <label style={labelStyle}>
-                Gol. Darah
+                Golongan Darah
               </label>
 
               <select
                 name="golonganDarah"
-                value={
-                  form.golonganDarah
-                }
+                value={form.golonganDarah}
                 onChange={handleChange}
                 style={inputStyle}
               >
                 <option value="">
-                  -
+                  Pilih Golongan Darah
                 </option>
 
                 <option value="A">
@@ -166,6 +166,7 @@ function TambahPasienModal({ onClose, onSave }) {
                 </option>
               </select>
             </div>
+
           </div>
 
           <button
@@ -284,7 +285,6 @@ export default function Pasien() {
       <div style={tableCard}>
         <div style={tableHeader}>
           <h2 style={tableTitle}>
-            Patients Table
           </h2>
         </div>
 
@@ -398,12 +398,12 @@ export default function Pasien() {
                           30,
                         background:
                           pasien.status ===
-                          "Aktif"
+                            "Aktif"
                             ? "#48bb78"
                             : "#edf2f7",
                         color:
                           pasien.status ===
-                          "Aktif"
+                            "Aktif"
                             ? "#fff"
                             : "#718096",
                         fontSize: 12,
@@ -424,13 +424,12 @@ export default function Pasien() {
                         gap: 10,
                       }}
                     >
-                      <button
-                        style={
-                          actionBtn
-                        }
+                      <Link
+                        to={`/pasien/${pasien.id}`}
+                        style={actionBtn}
                       >
                         <FiEye />
-                      </button>
+                      </Link>
 
                       <button
                         onClick={() =>
