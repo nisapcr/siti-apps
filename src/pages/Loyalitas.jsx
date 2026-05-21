@@ -3,6 +3,7 @@ import {
   FiStar, FiGift, FiAward, FiZap, 
   FiChevronRight, FiUsers, FiTrendingUp 
 } from "react-icons/fi";
+import { PageHeader, StatsGrid, SectionTitle, ActionButton } from "../components";
 import loyalitasData from "../data/loyalitas.json";
 
 // Konfigurasi Level - Pastikan nama level di JSON (Bronze, Silver, dll) SAMA PERSIS case-sensitive nya
@@ -44,31 +45,25 @@ export default function Loyalitas() {
 
   return (
     <div style={{ padding: "24px", background: "#F8F9FA", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
-      
-      {/* Header */}
-      <div style={{ marginBottom: 24 }}>
-        <h2 style={{ color: "#2D3748", margin: 0, fontSize: "22px", fontWeight: "700" }}>Program Loyalitas</h2>
-        <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "4px 0 0 0" }}>Kelola poin dan reward pasien setia DentiCare</p>
-      </div>
+      <PageHeader
+        title="Program Loyalitas"
+        breadcrumb="Loyalitas"
+      />
+      <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "-18px 0 24px 0" }}>Kelola poin dan reward pasien setia DentiCare</p>
 
-      {/* Stats Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px", marginBottom: "30px" }}>
-        {stats.map((s, i) => (
-          <div key={i} style={cardStyle}>
-            <div>
-              <p style={statLabelStyle}>{s.label}</p>
-              <h4 style={statValueStyle}>{s.value}</h4>
-            </div>
-            <div style={iconBoxStyle}><s.icon size={20} color="#fff" /></div>
-          </div>
-        ))}
-      </div>
+      <StatsGrid
+        stats={stats.map((s) => ({
+          title: s.label,
+          value: s.value,
+          icon: s.icon,
+        }))}
+      />
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
         
         {/* Peringkat Pasien */}
         <div style={{ ...cardStyleFull, flex: 2 }}>
-          <h3 style={cardTitleStyle}>Peringkat Poin Pasien</h3>
+          <SectionTitle>Peringkat Poin Pasien</SectionTitle>
           <div style={{ marginTop: "20px" }}>
             {dataPasien.map((pasien, idx) => {
               // Safety check jika level tidak ada di config
@@ -96,16 +91,14 @@ export default function Loyalitas() {
 
         {/* Reward Section */}
         <div style={{ ...cardStyleFull, flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-             <FiGift color="#4FD1C5" size={20} />
-             <h3 style={cardTitleStyle}>Reward Tersedia</h3>
-          </div>
+          <SectionTitle>Reward Tersedia</SectionTitle>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             {rewards.map((r, i) => (
               <div key={i} style={rewardItemStyle}>
                 <div style={{ fontSize: "18px", fontWeight: "800", color: "#4FD1C5" }}>{r.poin}</div>
                 <div style={{ fontSize: "11px", color: "#A0AEC0", textTransform: "uppercase", fontWeight: "bold" }}>Poin</div>
                 <div style={{ fontSize: "13px", color: "#2D3748", fontWeight: "600", marginTop: "4px" }}>{r.label}</div>
+                <ActionButton>Tukar</ActionButton>
               </div>
             ))}
           </div>

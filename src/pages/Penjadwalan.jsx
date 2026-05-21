@@ -6,6 +6,7 @@ import {
   FiCalendar,
   FiSearch,
 } from "react-icons/fi";
+import { PageHeader, StatsGrid, SectionTitle } from "../components";
 
 import jadwalData from "../data/jadwal.json";
 
@@ -69,89 +70,46 @@ export default function Penjadwalan() {
       label: "Janji Hari Ini",
       value: jadwalHariIni.length,
       color: "#4FD1C5",
-      icon: <FiCalendar />,
+      icon: FiCalendar,
     },
     {
       label: "Pending",
       value: jadwalPending.length,
       color: "#F6AD55",
-      icon: <FiClock />,
+      icon: FiClock,
     },
     {
       label: "Total Jadwal",
       value: jadwalData.length,
       color: "#4299E1",
-      icon: <FiCheckCircle />,
+      icon: FiCheckCircle,
     },
   ];
 
   return (
     <div style={container}>
-      {/* HEADER */}
-      <div style={header}>
-        <div>
-          <p style={breadcrumb}>
-          </p>
+      <PageHeader
+        title="Penjadwalan"
+        breadcrumb="Jadwal"
+      />
+      <p style={subtitle}>
+        Atur jadwal dan reminder pasien
+      </p>
 
-          <h1 style={title}>
-            Penjadwalan
-          </h1>
-
-          <p style={subtitle}>
-            Atur jadwal dan reminder
-            pasien
-          </p>
-        </div>
-      </div>
-
-      {/* STATS */}
-      <div style={statsGrid}>
-        {stats.map((s, i) => (
-          <div
-            key={i}
-            style={statsCard}
-          >
-            <div
-              style={{
-                ...iconWrapper,
-                background: s.color,
-              }}
-            >
-              {s.icon}
-            </div>
-
-            <div>
-              <div
-                style={statsLabel}
-              >
-                {s.label}
-              </div>
-
-              <div
-                style={{
-                  ...statsValue,
-                  color: s.color,
-                }}
-              >
-                {s.value}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <StatsGrid
+        stats={stats.map((s) => ({
+          title: s.label,
+          value: s.value,
+          icon: s.icon,
+        }))}
+      />
 
       {/* TABLE CARD */}
       <div style={tableCard}>
         {/* HEADER */}
         <div style={tableHeader}>
           <div>
-            <h2 style={tableTitle}>
-              Daftar Penjadwalan
-            </h2>
-
-            <p style={tableSub}>
-              Semua jadwal pasien
-            </p>
+              <SectionTitle>Daftar Penjadwalan</SectionTitle>
           </div>
 
           <div style={filterWrapper}>

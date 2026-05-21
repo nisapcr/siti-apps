@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FiMail, FiLock, FiAlertCircle, FiLoader } from "react-icons/fi";
+import { ActionButton, SectionTitle } from "../../components";
 import axios from "axios";
 
 // Definisi Warna Mint
@@ -63,9 +64,7 @@ export default function Login() {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }}>
       <div style={{ marginBottom: 32, textAlign: "center" }}>
-        <h3 style={{ fontSize: 20, fontWeight: 700, color: "#2D3748", margin: 0 }}>
-          Selamat Datang Kembali
-        </h3>
+        <SectionTitle>Selamat Datang Kembali</SectionTitle>
         <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 4 }}>
           Masuk untuk mengelola data klinik Anda
         </p>
@@ -168,28 +167,9 @@ export default function Login() {
         </div>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            background: loading ? "#CBD5E0" : mintColor,
-            color: "#FFFFFF",
-            fontWeight: 700,
-            fontSize: 15,
-            padding: "13px",
-            borderRadius: 14,
-            border: "none",
-            cursor: loading ? "not-allowed" : "pointer",
-            fontFamily: "'Inter', sans-serif",
-            transition: "all 0.2s ease",
-            boxShadow: loading ? "none" : `0px 4px 12px rgba(79, 209, 197, 0.3)`,
-          }}
-          onMouseEnter={(e) => { if (!loading) e.currentTarget.style.transform = "translateY(-1px)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
-        >
+        <ActionButton type="submit" disabled={loading}>
           {loading ? "Menghubungkan..." : "Masuk ke Dashboard"}
-        </button>
+        </ActionButton>
       </form>
 
       {/* Footer Links */}

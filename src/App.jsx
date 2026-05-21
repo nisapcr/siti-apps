@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 
-import Loading from "./components/Loading";
+import { Loading } from "./components";
 
 /* ================= LAZY PAGES ================= */
 

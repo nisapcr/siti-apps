@@ -6,6 +6,7 @@ import {
   FiX,
   FiFolder,
 } from "react-icons/fi";
+import { PageHeader, SectionTitle, ActionButton } from "../components";
 
 import riwayatPerawatanData from "../data/riwayatPerawatan.json";
 
@@ -310,21 +311,15 @@ export default function Riwayat() {
         />
       )}
 
-      {/* HEADER */}
-      <div style={header}>
-        <p style={breadcrumb}>
-        </p>
+      <PageHeader
+        title="Riwayat Perawatan"
+        breadcrumb="Riwayat"
+      />
+      <p style={subtitle}>
+        Catatan medis lengkap pasien klinik
+      </p>
 
-        <h1 style={title}>
-          Riwayat Perawatan
-        </h1>
-
-        <p style={subtitle}>
-          Catatan medis lengkap
-          pasien klinik
-        </p>
-      </div>
-
+      <SectionTitle>Filter dan Ekspor</SectionTitle>
       {/* SEARCH + BUTTON */}
       <div style={topBar}>
         <div style={searchWrap}>

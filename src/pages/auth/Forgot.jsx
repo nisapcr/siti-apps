@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiMail, FiArrowLeft } from "react-icons/fi";
+import { ActionButton, SectionTitle } from "../../components";
 
 export default function Forgot() {
   const mintColor = "#4FD1C5";
@@ -7,9 +8,7 @@ export default function Forgot() {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }}>
       <div style={{ marginBottom: 32, textAlign: "center" }}>
-        <h3 style={{ fontSize: 22, fontWeight: 700, color: "#2D3748", margin: 0 }}>
-          Lupa Password?
-        </h3>
+        <SectionTitle>Lupa Password?</SectionTitle>
         <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 8, lineHeight: "1.5" }}>
           Jangan khawatir! Masukkan email Anda dan kami akan mengirimkan instruksi pemulihan.
         </p>
@@ -61,27 +60,9 @@ export default function Forgot() {
           </div>
         </div>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            background: mintColor,
-            color: "#FFFFFF",
-            fontWeight: 700,
-            fontSize: 15,
-            padding: "13px",
-            borderRadius: 14,
-            border: "none",
-            cursor: "pointer",
-            fontFamily: "'Inter', sans-serif",
-            transition: "all 0.2s ease",
-            boxShadow: `0px 4px 12px rgba(79, 209, 197, 0.3)`,
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
-        >
+        <ActionButton type="submit">
           Kirim Link Pemulihan
-        </button>
+        </ActionButton>
       </form>
 
       <div style={{ marginTop: 32, textAlign: "center" }}>

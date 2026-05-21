@@ -7,6 +7,7 @@ import {
   FiDollarSign,
   FiFileText,
 } from "react-icons/fi";
+import { PageHeader, StatsGrid, SectionTitle, ActionButton } from "../components";
 
 import transaksiData from "../data/transaksi.json";
 
@@ -196,28 +197,28 @@ export default function Pembayaran() {
         1000000
       ).toFixed(1)}jt`,
       color: "#4FD1C5",
-      icon: <FiDollarSign />,
+      icon: FiDollarSign,
     },
 
     {
       label: "Transaksi Lunas",
       value: totalLunas,
       color: "#4299E1",
-      icon: <FiCheckCircle />,
+      icon: FiCheckCircle,
     },
 
     {
       label: "Transaksi Cicil",
       value: totalCicil,
       color: "#F6AD55",
-      icon: <FiClock />,
+      icon: FiClock,
     },
 
     {
       label: "Total Invoice",
       value: transaksiData.length,
       color: "#9F7AEA",
-      icon: <FiFileText />,
+      icon: FiFileText,
     },
   ];
 
@@ -236,76 +237,31 @@ export default function Pembayaran() {
         />
       )}
 
-      {/* HEADER */}
-      <div style={header}>
-        <p style={breadcrumb}>
-        </p>
+      <PageHeader
+        title="Manajemen Pembayaran"
+        breadcrumb="Pembayaran"
+      />
+      <p style={subtitle}>
+        Pantau transaksi dan cetak kwitansi pasien
+      </p>
 
-        <h1 style={title}>
-          Manajemen Pembayaran
-        </h1>
+      <StatsGrid
+        stats={stats.map((s) => ({
+          title: s.label,
+          value: s.value,
+          icon: s.icon,
+        }))}
+      />
 
-        <p style={subtitle}>
-          Pantau transaksi dan
-          cetak kwitansi pasien
-        </p>
-      </div>
-
-      {/* STATS */}
-      <div style={statsGrid}>
-        {stats.map((s, i) => (
-          <div
-            key={i}
-            style={statsCard}
-          >
-            <div
-              style={{
-                ...statsIcon,
-                background:
-                  s.color,
-              }}
-            >
-              {s.icon}
-            </div>
-
-            <div>
-              <p style={statsLabel}>
-                {s.label}
-              </p>
-
-              <h2
-                style={{
-                  ...statsValue,
-                  color: s.color,
-                }}
-              >
-                {s.value}
-              </h2>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* TABLE */}
       <div style={tableCard}>
         <div style={tableHeader}>
-          <div>
-            <h2 style={tableTitle}>
-              Riwayat Transaksi
-            </h2>
-
-            <p style={tableSub}>
-              Data pembayaran
-              pasien terbaru
-            </p>
-          </div>
+          <SectionTitle>Riwayat Transaksi</SectionTitle>
+          <p style={tableSub}>
+            Data pembayaran pasien terbaru
+          </p>
         </div>
 
-        <div
-          style={{
-            overflowX: "auto",
-          }}
-        >
+        <div style={{ overflowX: "auto" }}>
           <table style={table}>
             <thead>
               <tr>
@@ -395,19 +351,16 @@ export default function Pembayaran() {
                     </td>
 
                     <td style={td}>
-                      <button
+                      <ActionButton
                         onClick={() =>
                           setSelectedTransaksi(
                             t
                           )
                         }
-                        style={
-                          cetakBtn
-                        }
                       >
                         <FiPrinter />
                         Cetak
-                      </button>
+                      </ActionButton>
                     </td>
                   </tr>
                 )

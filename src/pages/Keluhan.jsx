@@ -1,6 +1,7 @@
 // src/pages/Keluhan.jsx
 import { useState } from "react";
 import { FiAlertCircle, FiCheckCircle, FiStar, FiSend, FiMessageCircle } from "react-icons/fi";
+import { PageHeader, StatsGrid, SectionTitle, ActionButton } from "../components";
 import data from "../data/keluhan.json";
 
 const { keluhanData, surveyData } = data;
@@ -43,27 +44,24 @@ export default function Keluhan() {
 
   return (
     <div style={{ padding: "24px", background: "#F8F9FA", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
-      
-      {/* Header Identik Purity UI */}
-      <div style={{ marginBottom: "24px" }}>
-        <h2 style={{ color: "#2D3748", margin: 0, fontSize: "22px", fontWeight: "700" }}>Feedback & Layanan Pasien</h2>
-        <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "4px 0 0 0" }}>Manajemen keluhan dan evaluasi kepuasan pasien klinik</p>
-      </div>
+      <PageHeader
+        title="Feedback & Layanan Pasien"
+        breadcrumb="Keluhan"
+      />
+      <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "-18px 0 24px 0" }}>Manajemen keluhan dan evaluasi kepuasan pasien klinik</p>
 
-      {/* Grid Statistik - Menggunakan style Card yang sama dengan Dashboard */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px", marginBottom: "30px" }}>
-        {stats.map((s, i) => (
-          <div key={i} style={cardStyle}>
-            <div>
-              <p style={{ fontSize: "12px", color: "#A0AEC0", fontWeight: "700", margin: 0, textTransform: "uppercase" }}>{s.label}</p>
-              <h4 style={{ fontSize: "18px", fontWeight: "700", color: "#2D3748", margin: "4px 0 0 0" }}>{s.value}</h4>
-            </div>
-            <div style={iconBoxStyle}><s.icon size={20} color="#fff" /></div>
-          </div>
-        ))}
-      </div>
+      <StatsGrid
+        stats={stats.map((s) => ({
+          title: s.label,
+          value: s.value,
+          icon: s.icon,
+        }))}
+      />
 
-      {/* Tabs Layout */}
+      <SectionTitle>
+        {activeTab === "keluhan" ? "Daftar Keluhan" : "Survey Kepuasan"}
+      </SectionTitle>
+
       <div style={{ background: "#fff", borderRadius: "15px", padding: "20px", boxShadow: "0px 3.5px 5.5px rgba(0, 0, 0, 0.02)" }}>
         <div style={{ display: "flex", gap: "20px", borderBottom: "1px solid #E2E8F0", marginBottom: "20px" }}>
           {["keluhan", "survey"].map((tab) => (
@@ -120,9 +118,9 @@ export default function Keluhan() {
                 </div>
               </div>
 
-              <button style={btnActionStyle}>
-                <FiSend size={14} /> Balas
-              </button>
+              <ActionButton>
+                <FiSend /> Balas
+              </ActionButton>
             </div>
           ))}
         </div>

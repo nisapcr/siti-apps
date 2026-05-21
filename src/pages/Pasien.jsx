@@ -9,6 +9,11 @@ import {
 
 import { Link } from "react-router-dom";
 
+import {
+  PageHeader,
+  ActionButton,
+} from "../components";
+
 import pasienData from "../data/pasien.json";
 
 function TambahPasienModal({ onClose, onSave }) {
@@ -242,27 +247,15 @@ export default function Pasien() {
         />
       )}
 
-      {/* HEADER */}
-      <div style={header}>
-        <div>
-          <p style={breadcrumb}>
-          </p>
-
-          <h1 style={title}>
-            Data Pasien
-          </h1>
-        </div>
-
-        <button
-          onClick={() =>
-            setShowModal(true)
-          }
-          style={btnPrimary}
-        >
+      <PageHeader
+        title="Data Pasien"
+        breadcrumb="Pasien"
+      >
+        <ActionButton onClick={() => setShowModal(true)}>
           <FiPlus />
           Tambah Pasien
-        </button>
-      </div>
+        </ActionButton>
+      </PageHeader>
 
       {/* SEARCH */}
       <div style={searchWrapper}>

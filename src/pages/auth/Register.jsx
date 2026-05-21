@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
+import { ActionButton, SectionTitle } from "../../components";
 
 // Definisi Warna Mint Konsisten
 const mintColor = "#4FD1C5";
@@ -51,9 +52,7 @@ export default function Register() {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }}>
       <div style={{ marginBottom: 32, textAlign: "center" }}>
-        <h3 style={{ fontSize: 22, fontWeight: 700, color: "#2D3748", margin: 0 }}>
-          Daftar Akun Baru
-        </h3>
+        <SectionTitle>Daftar Akun Baru</SectionTitle>
         <p style={{ fontSize: 14, color: "#A0AEC0", marginTop: 8 }}>
           Bergabunglah untuk mulai mengelola klinik Anda
         </p>
@@ -120,27 +119,9 @@ export default function Register() {
           </div>
         </div>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            background: mintColor,
-            color: "#FFFFFF",
-            fontWeight: 700,
-            fontSize: 15,
-            padding: "13px",
-            borderRadius: 14,
-            border: "none",
-            cursor: "pointer",
-            fontFamily: "'Inter', sans-serif",
-            transition: "all 0.2s ease",
-            boxShadow: `0px 4px 12px rgba(79, 209, 197, 0.3)`,
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-1px)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
-        >
+        <ActionButton type="submit">
           Daftar Sekarang
-        </button>
+        </ActionButton>
       </form>
 
       <p style={{ textAlign: "center", fontSize: 14, color: "#718096", marginTop: 24 }}>

@@ -1,4 +1,5 @@
 import { FiBell, FiSend, FiClock, FiCalendar, FiCheckCircle } from "react-icons/fi";
+import { PageHeader, StatsGrid, SectionTitle, ActionButton } from "../components";
 import notifikasiData from "../data/notifikasi.json";
 
 export default function Notifikasi() {
@@ -16,25 +17,21 @@ export default function Notifikasi() {
 
   return (
     <div style={{ padding: "24px", background: "#F8F9FA", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
-      <div style={{ marginBottom: 24 }}>
-        <h2 style={{ color: "#2D3748", margin: 0, fontSize: "22px", fontWeight: "700" }}>Notifikasi Perawatan</h2>
-        <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "4px 0 0 0" }}>Pengingat otomatis jadwal kontrol pasien</p>
-      </div>
+      <PageHeader
+        title="Notifikasi Perawatan"
+        breadcrumb="Notifikasi"
+      />
+      <p style={{ color: "#A0AEC0", fontSize: "14px", margin: "-18px 0 24px 0" }}>Pengingat otomatis jadwal kontrol pasien</p>
 
-      {/* Stats Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px", marginBottom: "30px" }}>
-        {stats.map((s, i) => (
-          <div key={i} style={cardStyle}>
-            <div>
-              <p style={statLabelStyle}>{s.label}</p>
-              <h4 style={statValueStyle}>{s.value}</h4>
-            </div>
-            <div style={iconBoxStyle}><s.icon size={20} color="#fff" /></div>
-          </div>
-        ))}
-      </div>
+      <StatsGrid
+        stats={stats.map((s) => ({
+          title: s.label,
+          value: s.value,
+          icon: s.icon,
+        }))}
+      />
 
-      {/* List Notifikasi */}
+      <SectionTitle>Antrian Pengiriman Notifikasi</SectionTitle>
       <div style={cardStyleFull}>
         <h3 style={cardTitleStyle}>Antrian Pengiriman Notifikasi</h3>
         <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -52,7 +49,9 @@ export default function Notifikasi() {
                   <span style={smallInfoStyle}>Via: {notif.reminderMethod}</span>
                 </div>
               </div>
-              <button style={btnActionStyle}><FiSend size={14} /> Kirim</button>
+              <ActionButton>
+                <FiSend /> Kirim
+              </ActionButton>
             </div>
           ))}
         </div>

@@ -1,4 +1,8 @@
 import { useParams } from "react-router-dom";
+import {
+  PageHeader,
+  StatusBadge,
+} from "../components";
 import pasienData from "../data/pasien.json";
 
 export default function PasienDetail() {
@@ -21,6 +25,10 @@ export default function PasienDetail() {
 
     return (
         <div style={container}>
+            <PageHeader
+              title="Detail Pasien"
+              breadcrumb="Pasien"
+            />
 
             <div style={card}>
 
@@ -98,21 +106,14 @@ export default function PasienDetail() {
                             Status
                         </span>
 
-                        <span
-                            style={{
-                                ...statusBadge,
-                                background:
-                                    pasien.status === "Aktif"
-                                        ? "#48bb78"
-                                        : "#e2e8f0",
-                                color:
-                                    pasien.status === "Aktif"
-                                        ? "#ffffff"
-                                        : "#4a5568",
-                            }}
-                        >
-                            {pasien.status}
-                        </span>
+                        <StatusBadge
+                          text={pasien.status}
+                          color={
+                            pasien.status === "Aktif"
+                              ? "#48BB78"
+                              : "#4A5568"
+                          }
+                        />
                     </div>
 
                 </div>
