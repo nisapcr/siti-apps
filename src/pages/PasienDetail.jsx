@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FiArrowLeft, FiActivity, FiFileText, FiDollarSign } from "react-icons/fi";
 
@@ -7,19 +6,21 @@ import {
     StatusBadge,
 } from "../components";
 
-// IMPORT COMPONENT SHADCN AWAL PILIHAN ANDA
+// IMPORT COMPONENT SHADCN UI
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import pasienData from "../data/pasien.json";
 
 export default function PasienDetail() {
     const { id } = useParams();
 
-    // State untuk kontrol buka-tutup Accordion Manual di dalam tab rekam medis
-    const [bukaRiwayat, setBukaRiwayat] = useState(false);
-    const [bukaBayar, setBukaBayar] = useState(false);
-    const [hoverRiwayat, setHoverRiwayat] = useState(false);
-    const [hoverBayar, setHoverBayar] = useState(false);
+    // Seluruh state kontrol manual buka-tutup dan hover sudah dihapus karena otomatis dihandle oleh Shadcn UI
 
     const pasien = pasienData.find(
         (item) => item.id === Number(id)
@@ -47,7 +48,7 @@ export default function PasienDetail() {
                 </Link>
             </div>
 
-            {/* STRUKTUR TATA LETAK BARU: DUA KOLOM (KIRI & KANAN) */}
+            {/* STRUKTUR TATA LETAK: DUA KOLOM (KIRI & KANAN) */}
             <div style={layoutGrid}>
                 
                 {/* ================= SISI KIRI: PROFIL & BIODATA RINGKAS ================= */}
@@ -113,40 +114,72 @@ export default function PasienDetail() {
                             </TabsTrigger>
                         </TabsList>
 
-                        {/* ISI TAB 1: RIWAYAT PERAWATAN (MENGGUNAKAN ACCORDION ANDA) */}
+                        {/* ISI TAB 1: RIWAYAT PERAWATAN (MENGGUNAKAN ACCORDION SHADCN UI) */}
                         <TabsContent value="rekam-medis" className="outline-none">
                             <h3 style={sectionTitle}>Daftar Kunjungan Klinis Gigi</h3>
                             
-                            <div style={accordionBox}>
-                                <button 
-                                    onClick={() => setBukaRiwayat(!bukaRiwayat)}
-                                    onMouseEnter={() => setHoverRiwayat(true)}
-                                    onMouseLeave={() => setHoverRiwayat(false)}
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem
+                                    value="riwayat-1"
                                     style={{
-                                        ...accordionTrigger,
-                                        background: hoverRiwayat ? "#edf2f7" : "#f7fafc"
+                                        border: "1px solid #e2e8f0",
+                                        borderRadius: "14px",
+                                        overflow: "hidden",
                                     }}
                                 >
-                                    <span style={{ fontWeight: 600, color: "#2d3748" }}>Kunjungan Tindakan Scaling Gigi (drg. Permata)</span>
-                                    <span style={accordionIcon}>{bukaRiwayat ? "▲" : "▼"}</span>
-                                </button>
-                                
-                                {bukaRiwayat && (
-                                    <div style={accordionContent}>
+                                    <AccordionTrigger
+                                        style={{
+                                            padding: "16px 20px",
+                                            fontWeight: 600,
+                                            color: "#2d3748",
+                                            background: "#f7fafc",
+                                        }}
+                                    >
+                                        Kunjungan Tindakan Scaling Gigi (drg. Permata)
+                                    </AccordionTrigger>
+
+                                    <AccordionContent
+                                        style={{
+                                            padding: "16px",
+                                            background: "#f7fafc",
+                                        }}
+                                    >
                                         <div style={contentCard}>
-                                            <span style={{ fontWeight: 700, color: "#2d3748", marginBottom: "6px" }}>
+                                            <span
+                                                style={{
+                                                    fontWeight: 700,
+                                                    color: "#2d3748",
+                                                    marginBottom: "6px",
+                                                }}
+                                            >
                                                 Detail Tindakan Pemeriksaan Gigi
                                             </span>
-                                            <p style={{ margin: "2px 0", color: "#4a5568" }}><strong>Keluhan:</strong> Gusi berdarah saat sikat gigi.</p>
-                                            <p style={{ margin: "2px 0", color: "#4a5568" }}><strong>Diagnosis:</strong> Gingivitis e.c. Calculus.</p>
-                                            <p style={{ margin: "2px 0", color: "#4a5568" }}><strong>Tindakan:</strong> Pembersihan karang gigi rahang atas & bawah.</p>
-                                            <span style={{ color: "#a0aec0", fontSize: "12px", marginTop: "8px" }}>
+
+                                            <p style={{ margin: "2px 0", color: "#4a5568" }}>
+                                                <strong>Keluhan:</strong> Gusi berdarah saat sikat gigi.
+                                            </p>
+
+                                            <p style={{ margin: "2px 0", color: "#4a5568" }}>
+                                                <strong>Diagnosis:</strong> Gingivitis e.c. Calculus.
+                                            </p>
+
+                                            <p style={{ margin: "2px 0", color: "#4a5568" }}>
+                                                <strong>Tindakan:</strong> Pembersihan karang gigi rahang atas & bawah.
+                                            </p>
+
+                                            <span
+                                                style={{
+                                                    color: "#a0aec0",
+                                                    fontSize: "12px",
+                                                    marginTop: "8px",
+                                                }}
+                                            >
                                                 Tanggal Kunjungan: 14 Januari 2025
                                             </span>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
                         </TabsContent>
 
                         {/* ISI TAB 2: CATATAN MEDIS */}
@@ -167,26 +200,36 @@ export default function PasienDetail() {
                             </div>
                         </TabsContent>
 
-                        {/* ISI TAB 3: TAGIHAN / BILLING */}
+                        {/* ISI TAB 3: TAGIHAN / BILLING (SEKARANG SUDAH 100% SHADCN UI) */}
                         <TabsContent value="billing" className="outline-none">
                             <h3 style={sectionTitle}>Riwayat Nota Transaksi</h3>
                             
-                            <div style={accordionBox}>
-                                <button 
-                                    onClick={() => setBukaBayar(!bukaBayar)}
-                                    onMouseEnter={() => setHoverBayar(true)}
-                                    onMouseLeave={() => setHoverBayar(false)}
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem
+                                    value="billing-1"
                                     style={{
-                                        ...accordionTrigger,
-                                        background: hoverBayar ? "#edf2f7" : "#f7fafc"
+                                        border: "1px solid #e2e8f0",
+                                        borderRadius: "14px",
+                                        overflow: "hidden",
                                     }}
                                 >
-                                    <span style={{ fontWeight: 600, color: "#2d3748" }}>Invoice Pembayaran INV-2025-001</span>
-                                    <span style={accordionIcon}>{bukaBayar ? "▲" : "▼"}</span>
-                                </button>
+                                    <AccordionTrigger
+                                        style={{
+                                            padding: "16px 20px",
+                                            fontWeight: 600,
+                                            color: "#2d3748",
+                                            background: "#f7fafc",
+                                        }}
+                                    >
+                                        Invoice Pembayaran INV-2025-001
+                                    </AccordionTrigger>
 
-                                {bukaBayar && (
-                                    <div style={accordionContent}>
+                                    <AccordionContent
+                                        style={{
+                                            padding: "16px",
+                                            background: "#f7fafc",
+                                        }}
+                                    >
                                         <div style={contentCard}>
                                             <div style={{ display: "flex", justifyContent: "space-between", width: "100%", marginBottom: "6px" }}>
                                                 <span style={{ color: "#4a5568", fontWeight: 500 }}>Tindakan Pembersihan Karang Gigi</span>
@@ -196,9 +239,9 @@ export default function PasienDetail() {
                                                 <span style={miniBadge}>Lunas</span>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
                         </TabsContent>
                     </Tabs>
 
@@ -208,7 +251,7 @@ export default function PasienDetail() {
     );
 }
 
-/* ================= DESAIN CSS-IN-JS (MURNI STYLES BARU) ================= */
+/* ================= DESAIN CSS-IN-JS (MURNI STYLES BERKUALITAS) ================= */
 
 const container = {
     minHeight: "100vh",
@@ -343,37 +386,6 @@ const errorCard = {
     maxWidth: 400,
     margin: "40px auto",
     boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
-};
-
-/* --- Gaya Style Lipat Accordion --- */
-const accordionBox = {
-    border: "1px solid #e2e8f0",
-    borderRadius: "14px",
-    marginBottom: "14px",
-    overflow: "hidden",
-};
-
-const accordionTrigger = {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "16px 20px",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "14px",
-    outline: "none",
-    transition: "background 0.2s ease",
-};
-
-const accordionIcon = {
-    fontSize: "11px",
-    color: "#a0aec0",
-};
-
-const accordionContent = {
-    padding: "0 16px 16px 16px",
-    background: "#f7fafc",
 };
 
 const contentCard = {
