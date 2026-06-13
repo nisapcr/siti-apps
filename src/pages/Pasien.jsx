@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiPlus, FiSearch, FiTrash2, FiMaximize2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -146,6 +146,9 @@ export default function Pasien() {
   const [pasienList, setPasienList] = useState(pasienData || []);
   const [activePasien, setActivePasien] = useState(null);
   const [openRiwayat, setOpenRiwayat] = useState(false);
+  
+  // State baru untuk menyimpan jumlah hasil pencarian
+  const [jumlahHasil, setJumlahHasil] = useState(0);
 
   const handleAddPasien = (newPasien) => {
     setPasienList([newPasien, ...pasienList]);
@@ -164,6 +167,15 @@ export default function Pasien() {
       item.email?.toLowerCase().includes(search.toLowerCase())
     );
   });
+
+  // useEffect untuk memantau perubahan pada search atau filteredPasien
+  useEffect(() => {
+    setJumlahHasil(filteredPasien.length);
+
+    console.log(
+      `Pencarian pasien menghasilkan ${filteredPasien.length} data`
+    );
+  }, [search, filteredPasien]);
 
   return (
     <div style={container}>
@@ -192,6 +204,17 @@ export default function Pasien() {
           style={searchInput}
         />
       </div>
+
+      {/* Tampilan Jumlah Hasil setelah Search Box */}
+      <p
+        style={{
+          color: "#718096",
+          marginBottom: "15px",
+          fontSize: "14px",
+        }}
+      >
+        Ditemukan {jumlahHasil} pasien
+      </p>
 
       {/* TABLE */}
       <div style={tableCard}>

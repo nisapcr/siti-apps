@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef } from "react"; // Mengubah useState menjadi useRef sesuai instruksi
 import { 
   FiStar, FiGift, FiAward, FiZap, 
   FiChevronRight, FiUsers, FiTrendingUp 
@@ -22,6 +22,16 @@ const rewards = [
 ];
 
 export default function Loyalitas() {
+  // Membuat Ref untuk target scroll
+  const rankingRef = useRef(null);
+
+  // Fungsi untuk handle smooth scroll ke area peringkat
+  const scrollToRanking = () => {
+    rankingRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   // 1. Tambahkan pengecekan data untuk menghindari error .length atau .reduce
   const dataPasien = loyalitasData || [];
 
@@ -59,10 +69,28 @@ export default function Loyalitas() {
         }))}
       />
 
+      {/* Tombol Baru untuk Fokus ke Peringkat Pasien */}
+      <div
+        style={{
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        <ActionButton onClick={scrollToRanking}>
+          Lihat Peringkat Pasien
+        </ActionButton>
+      </div>
+
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
         
-        {/* Peringkat Pasien */}
-        <div style={{ ...cardStyleFull, flex: 2 }}>
+        {/* Peringkat Pasien dengan Ref Terpasang */}
+        <div
+          ref={rankingRef}
+          style={{
+            ...cardStyleFull,
+            flex: 2,
+          }}
+        >
           <SectionTitle>Peringkat Poin Pasien</SectionTitle>
           <div style={{ marginTop: "20px" }}>
             {dataPasien.map((pasien, idx) => {
