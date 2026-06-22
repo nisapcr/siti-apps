@@ -9,7 +9,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { FiDollarSign, FiMessageSquare } from "react-icons/fi";
-
+import { FaUsers } from "react-icons/fa";
 const navItems = [
   { to: "/", icon: FaHome, label: "Dashboard" },
   { to: "/pasien", icon: FaUserInjured, label: "Data Pasien" },
@@ -19,6 +19,11 @@ const navItems = [
   { to: "/loyalitas", icon: FaStar, label: "Loyalitas" },
   { to: "/notifikasi", icon: FaBell, label: "Notifikasi" },
   { to: "/keluhan", icon: FiMessageSquare, label: "Keluhan & Feedback" },
+  {
+    to: "/users",
+    icon: FaUsers,
+    label: "Manajemen User",
+  },
 ];
 
 export default function Sidebar() {

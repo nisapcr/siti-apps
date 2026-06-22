@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
-
+import UserPage from "./pages/UserPage";
 import { Loading } from "./components";
 
 /* ================= LAZY PAGES ================= */
@@ -135,7 +135,7 @@ function App() {
             path="/keluhan"
             element={<Keluhan />}
           />
-
+          <Route path="/users" element={<UserPage />} />
         </Route>
 
       </Routes>
