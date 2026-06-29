@@ -80,7 +80,8 @@ export default function Login() {
         JSON.stringify(user[0])
       );
 
-      navigate("/");
+      // Redirect ke dashboard baru
+      navigate("/dashboard");
     } catch (err) {
       console.error(err);
 

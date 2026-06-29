@@ -8,6 +8,10 @@ import { Loading } from "./components";
 
 /* ================= LAZY PAGES ================= */
 
+const LandingPage = lazy(() =>
+  import("./pages/LandingPage")
+);
+
 const Dashboard = lazy(() =>
   import("./pages/Dashboard")
 );
@@ -87,9 +91,15 @@ function App() {
         {/* ================= MAIN ROUTES ================= */}
         <Route element={<MainLayout />}>
 
-          {/* DASHBOARD */}
+          {/* LANDING PAGE */}
           <Route
             path="/"
+            element={<LandingPage />}
+          />
+
+          {/* DASHBOARD */}
+          <Route
+            path="/dashboard"
             element={<Dashboard />}
           />
 
