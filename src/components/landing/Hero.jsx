@@ -1,180 +1,344 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, ShieldCheck, Users, CalendarDays } from "lucide-react";
+import {
+  FaArrowRight,
+  FaPlayCircle,
+  FaUsers,
+  FaCalendarAlt,
+  FaAward,
+} from "react-icons/fa";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-white to-slate-100">
-      <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 lg:flex-row">
+    <section
+      id="home"
+      style={{
+        background: "#F8FAFC",
+        padding: "80px 20px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(450px,1fr))",
+          gap: "60px",
+          alignItems: "center",
+        }}
+      >
+        {/* ================= LEFT ================= */}
 
-        {/* LEFT */}
-
-        <div className="flex-1">
-
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-            Customer Relationship Management
+        <div>
+          <span
+            style={{
+              background: "#E6FFFA",
+              color: "#2C7A7B",
+              padding: "8px 18px",
+              borderRadius: "30px",
+              fontWeight: 600,
+              fontSize: 14,
+            }}
+          >
+            Klinik Gigi Modern Sejahtera
           </span>
 
-          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-slate-800">
-            Kelola Klinik
-            <span className="text-blue-600">
-              {" "}Lebih Cepat
-            </span>
+          <h1
+            style={{
+              fontSize: "54px",
+              lineHeight: "65px",
+              marginTop: 25,
+              color: "#2D3748",
+              marginBottom: 20,
+            }}
+          >
+            Kelola Hubungan Pasien
             <br />
-            dengan SITI CRM
+            Lebih Mudah dengan
+            <span style={{ color: "#4FD1C5" }}>
+              {" "}
+              PERMATADENTAL
+            </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-slate-600">
-            SITI CRM membantu klinik mengelola data pasien,
-            penjadwalan, pembayaran, loyalitas pelanggan,
-            serta riwayat pelayanan dalam satu dashboard
-            yang modern dan mudah digunakan.
+          <p
+            style={{
+              color: "#718096",
+              fontSize: 18,
+              lineHeight: 1.8,
+              maxWidth: "560px",
+            }}
+          >
+            Sistem Customer Relationship Management
+            untuk Klinik Permata Dental yang membantu
+            mengelola pasien, jadwal, pembayaran,
+            loyalitas member, serta monitoring pelayanan
+            secara real-time dalam satu dashboard.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* BUTTON */}
 
+          <div
+            style={{
+              display: "flex",
+              gap: 18,
+              marginTop: 40,
+              flexWrap: "wrap",
+            }}
+          >
             <Link
               to="/login"
-              className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+              style={{
+                background: "#4FD1C5",
+                color: "#fff",
+                padding: "15px 28px",
+                borderRadius: "14px",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                fontWeight: 600,
+              }}
             >
-              Login
-              <ArrowRight size={18} />
+              Login Dashboard
+              <FaArrowRight />
             </Link>
 
             <a
-              href="#features"
-              className="rounded-xl border border-slate-300 px-6 py-3 font-semibold hover:bg-slate-100"
+              href="#fitur"
+              style={{
+                border: "2px solid #4FD1C5",
+                color: "#4FD1C5",
+                padding: "15px 28px",
+                borderRadius: "14px",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                fontWeight: 600,
+              }}
             >
-              Pelajari Fitur
+              <FaPlayCircle />
+              Lihat Fitur
             </a>
-
           </div>
 
-          {/* Statistik */}
+          {/* MINI STATS */}
 
-          <div className="mt-14 flex flex-wrap gap-10">
+          <div
+            style={{
+              display: "flex",
+              gap: "40px",
+              marginTop: "60px",
+              flexWrap: "wrap",
+            }}
+          >
+            <div>
+              <h2
+                style={{
+                  margin: 0,
+                  color: "#2D3748",
+                }}
+              >
+                1.200+
+              </h2>
 
-            <div className="flex items-center gap-3">
-
-              <Users className="text-blue-600" />
-
-              <div>
-                <h2 className="text-xl font-bold">1000+</h2>
-                <p className="text-sm text-slate-500">
-                  Data Pasien
-                </p>
-              </div>
-
+              <small
+                style={{
+                  color: "#718096",
+                }}
+              >
+                Pasien Aktif
+              </small>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div>
+              <h2
+                style={{
+                  margin: 0,
+                  color: "#2D3748",
+                }}
+              >
+                98%
+              </h2>
 
-              <CalendarDays className="text-blue-600" />
-
-              <div>
-                <h2 className="text-xl font-bold">24/7</h2>
-                <p className="text-sm text-slate-500">
-                  Monitoring
-                </p>
-              </div>
-
+              <small
+                style={{
+                  color: "#718096",
+                }}
+              >
+                Kepuasan Pasien
+              </small>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div>
+              <h2
+                style={{
+                  margin: 0,
+                  color: "#2D3748",
+                }}
+              >
+                24/7
+              </h2>
 
-              <ShieldCheck className="text-blue-600" />
-
-              <div>
-                <h2 className="text-xl font-bold">100%</h2>
-                <p className="text-sm text-slate-500">
-                  Data Aman
-                </p>
-              </div>
-
+              <small
+                style={{
+                  color: "#718096",
+                }}
+              >
+                Monitoring
+              </small>
             </div>
-
           </div>
-
         </div>
 
-        {/* RIGHT */}
+        {/* ================= RIGHT ================= */}
 
-        <div className="mt-16 flex-1 lg:mt-0">
+        <div>
+          <div
+            style={{
+              background: "#FFFFFF",
+              borderRadius: "30px",
+              padding: "28px",
+              boxShadow: "0 25px 50px rgba(0,0,0,.08)",
+            }}
+          >
+            {/* TOP */}
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
-
-            <div className="mb-5 flex gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-400"></div>
-              <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-              <div className="h-3 w-3 rounded-full bg-green-400"></div>
-            </div>
-
-            <div className="space-y-4">
-
-              <div className="rounded-xl bg-slate-100 p-5">
-
-                <h3 className="font-bold text-slate-700">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "24px",
+              }}
+            >
+              <div>
+                <h3
+                  style={{
+                    margin: 0,
+                    color: "#2D3748",
+                  }}
+                >
                   Dashboard CRM
                 </h3>
 
-                <p className="mt-2 text-sm text-slate-500">
-                  Monitoring pasien, transaksi,
-                  loyalitas pelanggan dan aktivitas
-                  klinik secara real-time.
-                </p>
-
+                <small
+                  style={{
+                    color: "#718096",
+                  }}
+                >
+                  Ringkasan Klinik Hari Ini
+                </small>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-
-                <div className="rounded-xl bg-blue-100 p-5">
-                  <h4 className="font-bold text-blue-700">
-                    250
-                  </h4>
-
-                  <p className="text-sm text-blue-600">
-                    Pasien Aktif
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-green-100 p-5">
-                  <h4 className="font-bold text-green-700">
-                    98%
-                  </h4>
-
-                  <p className="text-sm text-green-600">
-                    Kepuasan
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-orange-100 p-5">
-                  <h4 className="font-bold text-orange-700">
-                    15
-                  </h4>
-
-                  <p className="text-sm text-orange-600">
-                    Dokter
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-purple-100 p-5">
-                  <h4 className="font-bold text-purple-700">
-                    580
-                  </h4>
-
-                  <p className="text-sm text-purple-600">
-                    Transaksi
-                  </p>
-                </div>
-
-              </div>
-
+              <div
+                style={{
+                  width: 14,
+                  height: 14,
+                  background: "#4FD1C5",
+                  borderRadius: "50%",
+                }}
+              />
             </div>
 
+            {/* CARD */}
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2,1fr)",
+                gap: "18px",
+              }}
+            >
+              <DashboardCard
+                icon={<FaUsers />}
+                title="42"
+                subtitle="Pasien Hari Ini"
+              />
+
+              <DashboardCard
+                icon={<FaCalendarAlt />}
+                title="156"
+                subtitle="Janji Temu"
+              />
+
+              <DashboardCard
+                icon={<FaAward />}
+                title="Gold"
+                subtitle="Member Aktif"
+              />
+
+              <DashboardCard
+                icon={<FaUsers />}
+                title="98%"
+                subtitle="Kepuasan"
+              />
+            </div>
+
+            {/* Chart Dummy */}
+
+            <div
+              style={{
+                marginTop: 30,
+                height: 180,
+                background:
+                  "linear-gradient(135deg,#E6FFFA,#FFFFFF)",
+                borderRadius: 20,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#2C7A7B",
+                fontWeight: 700,
+                fontSize: 20,
+              }}
+            >
+              Dashboard Preview
+            </div>
           </div>
-
         </div>
-
       </div>
     </section>
+  );
+}
+
+function DashboardCard({
+  icon,
+  title,
+  subtitle,
+}) {
+  return (
+    <div
+      style={{
+        background: "#F8FAFC",
+        borderRadius: 18,
+        padding: 20,
+      }}
+    >
+      <div
+        style={{
+          color: "#4FD1C5",
+          fontSize: 22,
+          marginBottom: 12,
+        }}
+      >
+        {icon}
+      </div>
+
+      <h2
+        style={{
+          margin: 0,
+          color: "#2D3748",
+        }}
+      >
+        {title}
+      </h2>
+
+      <small
+        style={{
+          color: "#718096",
+        }}
+      >
+        {subtitle}
+      </small>
+    </div>
   );
 }

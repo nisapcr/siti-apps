@@ -68,6 +68,12 @@ function App() {
 
       <Routes>
 
+        {/* ================= LANDING PAGE (DI LUAR LAYOUT) ================= */}
+        <Route
+          path="/"
+          element={<LandingPage />}
+        />
+
         {/* ================= AUTH ROUTES ================= */}
         <Route element={<AuthLayout />}>
 
@@ -88,14 +94,8 @@ function App() {
 
         </Route>
 
-        {/* ================= MAIN ROUTES ================= */}
+        {/* ================= MAIN DASHBOARD ROUTES ================= */}
         <Route element={<MainLayout />}>
-
-          {/* LANDING PAGE */}
-          <Route
-            path="/"
-            element={<LandingPage />}
-          />
 
           {/* DASHBOARD */}
           <Route
@@ -145,7 +145,12 @@ function App() {
             path="/keluhan"
             element={<Keluhan />}
           />
-          <Route path="/users" element={<UserPage />} />
+
+          <Route 
+            path="/users" 
+            element={<UserPage />} 
+          />
+          
         </Route>
 
       </Routes>

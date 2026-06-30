@@ -19,3 +19,16 @@ export { default as Timeline } from "./Timeline";
 export { default as TimelineItem } from "./TimelineItem";
 export { default as TreatmentPanel } from "./TreatmentPanel";
 export { default as TreatmentRow } from "./TreatmentRow";
+
+// Landing Page Components Export
+export { default as Navbar } from "./landing/Navbar";
+export { default as Hero } from "./landing/Hero";
+export { default as Stats } from "./landing/Stats";
+export { default as About } from "./landing/About";
+export { default as WhyUs } from "./landing/WhyUs";
+export { default as Features } from "./landing/Features";
+export { default as Membership } from "./landing/Membership";
+export { default as DashboardPreview } from "./landing/DashboardPreview";
+export { default as Testimonials } from "./landing/Testimonials";
+export { default as CTA } from "./landing/CTA";
+export { default as Footer } from "./landing/Footer";

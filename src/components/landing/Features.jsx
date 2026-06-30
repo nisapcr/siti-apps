@@ -1,118 +1,187 @@
 import {
-  LayoutDashboard,
-  Users,
-  CalendarDays,
-  FileText,
-  CreditCard,
-  Award,
-  MessageCircleWarning,
-  BellRing,
-} from "lucide-react";
+  FaChartLine,
+  FaUsers,
+  FaCalendarAlt,
+  FaHistory,
+  FaMoneyBillWave,
+  FaGift,
+  FaBell,
+  FaComments,
+} from "react-icons/fa";
+
+const features = [
+  {
+    icon: <FaChartLine />,
+    title: "Dashboard Interaktif",
+    desc: "Monitoring aktivitas klinik melalui statistik pasien, dokter, jadwal, dan laporan secara real-time.",
+  },
+  {
+    icon: <FaUsers />,
+    title: "Manajemen Pasien",
+    desc: "Kelola data pasien dengan mudah mulai dari registrasi hingga riwayat kunjungan.",
+  },
+  {
+    icon: <FaCalendarAlt />,
+    title: "Penjadwalan",
+    desc: "Atur jadwal konsultasi dan kontrol pasien secara lebih terstruktur dan efisien.",
+  },
+  {
+    icon: <FaHistory />,
+    title: "Riwayat Perawatan",
+    desc: "Seluruh tindakan medis tersimpan sehingga memudahkan dokter melihat histori pasien.",
+  },
+  {
+    icon: <FaMoneyBillWave />,
+    title: "Pembayaran",
+    desc: "Mencatat transaksi pembayaran pasien dengan lebih cepat dan akurat.",
+  },
+  {
+    icon: <FaGift />,
+    title: "Loyalitas Member",
+    desc: "Program poin dan membership untuk meningkatkan loyalitas pasien terhadap klinik.",
+  },
+  {
+    icon: <FaBell />,
+    title: "Notifikasi",
+    desc: "Reminder jadwal kontrol, pembayaran, hingga promo klinik dikirim secara otomatis.",
+  },
+  {
+    icon: <FaComments />,
+    title: "Keluhan & Feedback",
+    desc: "Mencatat keluhan pasien sebagai bahan evaluasi kualitas pelayanan klinik.",
+  },
+];
 
 export default function Features() {
-  const features = [
-    {
-      icon: <LayoutDashboard size={40} />,
-      title: "Dashboard",
-      description:
-        "Monitoring aktivitas klinik secara real-time melalui dashboard interaktif.",
-    },
-    {
-      icon: <Users size={40} />,
-      title: "Data Pasien",
-      description:
-        "Mengelola data pasien secara lengkap, aman, dan mudah diakses.",
-    },
-    {
-      icon: <CalendarDays size={40} />,
-      title: "Penjadwalan",
-      description:
-        "Mengatur jadwal konsultasi pasien dengan dokter secara efisien.",
-    },
-    {
-      icon: <FileText size={40} />,
-      title: "Riwayat Perawatan",
-      description:
-        "Menyimpan seluruh riwayat pemeriksaan dan tindakan pasien.",
-    },
-    {
-      icon: <CreditCard size={40} />,
-      title: "Pembayaran",
-      description:
-        "Mencatat transaksi pembayaran pasien dengan cepat dan akurat.",
-    },
-    {
-      icon: <Award size={40} />,
-      title: "Loyalitas",
-      description:
-        "Mengelola poin member dan reward untuk meningkatkan loyalitas pasien.",
-    },
-    {
-      icon: <MessageCircleWarning size={40} />,
-      title: "Keluhan",
-      description:
-        "Mencatat dan menindaklanjuti keluhan pasien dengan lebih terstruktur.",
-    },
-    {
-      icon: <BellRing size={40} />,
-      title: "Notifikasi",
-      description:
-        "Mengirim pengingat jadwal, promo, dan informasi penting kepada pasien.",
-    },
-  ];
-
   return (
     <section
-      id="features"
-      className="bg-slate-50 py-24"
+      id="fitur"
+      style={{
+        background: "#F8FAFC",
+        padding: "100px 20px",
+      }}
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "auto",
+        }}
+      >
+        {/* Heading */}
 
-        <div className="text-center">
-
-          <span className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-            Fitur Utama
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "70px",
+          }}
+        >
+          <span
+            style={{
+              color: "#38B2AC",
+              fontWeight: 700,
+            }}
+          >
+            FITUR CRM
           </span>
 
-          <h2 className="mt-3 text-4xl font-bold text-slate-800">
-            Semua Kebutuhan Klinik
+          <h2
+            style={{
+              fontSize: "42px",
+              color: "#2D3748",
+              marginTop: "18px",
+            }}
+          >
+            Semua Yang Dibutuhkan Klinik
             <br />
-            Dalam Satu Platform
+            Dalam Satu Dashboard
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
-            SITI CRM menyediakan berbagai fitur yang membantu
-            pengelolaan operasional klinik menjadi lebih cepat,
-            efisien, dan terintegrasi.
+          <p
+            style={{
+              color: "#718096",
+              maxWidth: "760px",
+              margin: "25px auto 0",
+              lineHeight: 1.8,
+              fontSize: "17px",
+            }}
+          >
+            PERMATADENTAL menyediakan berbagai fitur untuk
+            membantu Klinik Permata Dental meningkatkan
+            pelayanan, efisiensi operasional, dan
+            hubungan jangka panjang dengan pasien.
           </p>
-
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {/* Grid */}
 
-          {features.map((feature, index) => (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(260px,1fr))",
+            gap: "28px",
+          }}
+        >
+          {features.map((item, index) => (
             <div
               key={index}
-              className="rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              style={{
+                background: "#FFFFFF",
+                borderRadius: "22px",
+                padding: "35px",
+                transition: ".3s",
+                border: "1px solid #EDF2F7",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(-10px)";
+                e.currentTarget.style.boxShadow =
+                  "0 20px 45px rgba(79,209,197,.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(0px)";
+                e.currentTarget.style.boxShadow =
+                  "none";
+              }}
             >
-
-              <div className="mb-6 inline-flex rounded-xl bg-blue-100 p-4 text-blue-600">
-                {feature.icon}
+              <div
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  borderRadius: "20px",
+                  background: "#E6FFFA",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "#38B2AC",
+                  fontSize: "28px",
+                  marginBottom: "25px",
+                }}
+              >
+                {item.icon}
               </div>
 
-              <h3 className="mb-3 text-xl font-bold text-slate-800">
-                {feature.title}
+              <h3
+                style={{
+                  color: "#2D3748",
+                  marginBottom: "15px",
+                }}
+              >
+                {item.title}
               </h3>
 
-              <p className="text-slate-600 leading-relaxed">
-                {feature.description}
+              <p
+                style={{
+                  color: "#718096",
+                  lineHeight: "1.8",
+                }}
+              >
+                {item.desc}
               </p>
-
             </div>
           ))}
-
         </div>
-
       </div>
     </section>
   );
