@@ -70,21 +70,28 @@ export default function Login() {
         dataForm.password
       );
 
-      if (user.length === 0) {
+      if (!user || user.length === 0) {
         setError("Email atau password salah");
         return;
       }
 
+      const loggedInUser = user[0];
+
+      // 1. Simpan data user ke localStorage dengan key "siti_session" agar dibaca ProtectedRoute
       localStorage.setItem(
-        "user",
-        JSON.stringify(user[0])
+        "siti_session",
+        JSON.stringify(loggedInUser)
       );
 
-      // Redirect ke dashboard baru
-      navigate("/dashboard");
+      // 2. Logika Redirect Dinamis Berdasarkan Role Pengguna
+      if (loggedInUser.role === "admin") {
+        navigate("/dashboard", { replace: true });
+      } else {
+        navigate("/portal", { replace: true });
+      }
+
     } catch (err) {
       console.error(err);
-
       setError(
         "Login gagal. Terjadi kesalahan pada server."
       );
@@ -270,7 +277,7 @@ export default function Login() {
         >
           {loading
             ? "Menghubungkan..."
-            : "Masuk ke Dashboard"}
+            : "Masuk"}
         </ActionButton>
       </form>
 
